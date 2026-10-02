@@ -318,3 +318,5 @@ a { color: var(--accent-ink); font-weight: 700; }
   .view, .stagger > *, .sheet, .scrim { animation: fade .2s both !important; }
   .confetti { display: none; }
 }
+
+.ped { margin-top: 8px; color: var(--ink-2); font-weight: 600; }

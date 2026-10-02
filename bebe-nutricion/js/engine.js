@@ -31,6 +31,15 @@ export function ageOf(birth, now = Date.now()) {
 }
 export const stageOf = (months) => (months < 7 ? '6m' : months < 8 ? '7m' : months < 9 ? '8m' : months < 12 ? '9m' : '12m');
 
+// Plan del pediatra: { groups: [...permitidos], until: 'YYYY-MM-DD'|'', note }
+export function activePlan(user, now = Date.now()) {
+  const p = user.plan;
+  if (!p || (!p.groups?.length && !p.note)) return null;
+  if (p.until && startOfDay(new Date(p.until + 'T12:00').getTime()) < startOfDay(now)) return null;
+  return p;
+}
+export const allowedByPlan = (plan, food) => !plan || !plan.groups?.length || plan.groups.includes(food?.grupo);
+
 export function flatItems(entries) {
   return entries.flatMap((e) => e.items.map((it) => ({ ...it, ts: e.ts, meal: e.meal, entryId: e.id, reaction: e.reaction })));
 }
@@ -92,29 +101,37 @@ export function advise({ entries, foods, allergens, tips, user, now = Date.now()
     });
   }
 
+  // 1b) Indicaciones del pediatra: mandan sobre cualquier sugerencia automática
+  const plan = activePlan(user, now);
+  if (plan) {
+    const gs = (plan.groups || []).map((g) => GROUPS[g]?.n.toLowerCase()).filter(Boolean).join(', ');
+    out.push({ kind: 'good', icon: '👩‍⚕️', id: 'plan', title: 'Indicaciones de tu pediatra',
+      text: [gs && `Por ahora: ${gs}.`, plan.note && plan.note.replace(/[.\s]+$/, '') + '.', plan.until && `Hasta el control (${new Date(plan.until + 'T12:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long' })}).`].filter(Boolean).join(' ') + ' Las sugerencias de abajo respetan este plan.', noPed: true });
+  }
+
   // 2) Primer día
   if (!entries.length) {
-    out.push({ kind: 'info', icon: '🥄', id: 'first', title: 'Empezá con poquito', text: `Un par de cucharaditas o mordiscos alcanzan. La leche sigue siendo el alimento principal; ahora ${name} explora sabores y texturas.`, cta: true });
+    out.push({ kind: 'info', icon: '🥄', id: 'first', title: 'Empezá con poquito', text: `Consultá con tu pediatra por dónde empezar. En general, un par de cucharaditas o mordiscos alcanzan. La leche sigue siendo el alimento principal; ahora ${name} explora sabores y texturas.`, cta: true });
     return out;
   }
 
   // 3) Hierro
   const lastIron = flatItems(entries).filter((i) => foodsById[i.foodId]?.ricoEnHierro).sort((a, b) => b.ts - a.ts)[0];
-  if (!lastIron || now - lastIron.ts > 2 * DAY) {
+  if ((!lastIron || now - lastIron.ts > 2 * DAY) && !(plan && plan.groups?.length)) {
     const ideas = foods.filter((f) => f.ricoEnHierro && !(stats[f.id]?.reaction) && !f.alergeno && !/higado|hígado/i.test(f.id + f.nombre)).slice(0, 40);
     const pick = ideas.length ? ideas[Math.floor((today / DAY) % ideas.length)] : null;
-    out.push({ kind: 'info', icon: '🩸', id: 'iron', title: 'Sumá hierro', text: `A partir de los 6 meses las reservas de hierro bajan. ${pick ? `Hoy podés ofrecer ${pick.emoji} ${pick.nombre.toLowerCase()}.` : 'Probá carne, legumbres bien cocidas o yema de huevo.'}`, food: pick?.id, cta: true });
+    out.push({ kind: 'info', icon: '🩸', id: 'iron', title: 'Sumá hierro', text: `A partir de los 6 meses las reservas de hierro bajan. ${pick ? `Una opción para charlar con tu pediatra: ${pick.emoji} ${pick.nombre.toLowerCase()}.` : 'Probá carne, legumbres bien cocidas o yema de huevo.'}`, food: pick?.id, cta: true });
   }
 
   // 4) Alérgenos pendientes (de a uno, con 2-3 días de espacio)
-  if (!lastReact) {
+  if (!lastReact && !(plan && plan.groups?.length)) {
     const introduced = new Set(Object.values(stats).map((s) => s.food?.alergeno).filter(Boolean));
     const newestAllergen = Object.values(stats).filter((s) => s.food?.alergeno).sort((a, b) => b.first - a.first)[0];
     const waited = !newestAllergen || now - newestAllergen.first >= 2 * DAY;
     const pending = (allergens?.alergenos || []).filter((a) => !introduced.has(a.id));
     if (pending.length && waited && age.months >= 6) {
       const next = pending[0];
-      out.push({ kind: 'good', icon: next.emoji || '🧪', id: 'allergen-next', title: `Próximo alérgeno: ${next.nombre.toLowerCase()}`, text: 'Ofrecelo solo, en poca cantidad y temprano en el día, así podés observar cómo le cae.', allergen: next.id });
+      out.push({ kind: 'good', icon: next.emoji || '🧪', id: 'allergen-next', title: `Alérgeno a consultar: ${next.nombre.toLowerCase()}`, text: 'Preguntale a tu pediatra cuándo y cómo empezar. Si te da el visto bueno, ofrecelo solo, en poca cantidad y temprano en el día, así podés observar cómo le cae.', allergen: next.id });
     }
   }
 
@@ -137,9 +154,9 @@ export function advise({ entries, foods, allergens, tips, user, now = Date.now()
   const week = flatItems(entries.filter((e) => e.ts >= today - 6 * DAY));
   const covered = new Set(week.map((i) => foodsById[i.foodId]?.grupo).filter(Boolean));
   const missing = WEEKLY_GROUPS.filter((g) => !covered.has(g));
-  if (entries.length >= 4 && missing.length) {
+  if (entries.length >= 4 && missing.length && !(plan && plan.groups?.length)) {
     const g = missing[0];
-    out.push({ kind: 'info', icon: GROUPS[g].e, id: 'group-' + g, title: `Falta ${GROUPS[g].n.toLowerCase()} esta semana`, text: `Sumar ${GROUPS[g].n.toLowerCase()} suma variedad de nutrientes. Elegí algo de ese grupo en la próxima comida.`, cta: true });
+    out.push({ kind: 'info', icon: GROUPS[g].e, id: 'group-' + g, title: `Falta ${GROUPS[g].n.toLowerCase()} esta semana`, text: `Sumar ${GROUPS[g].n.toLowerCase()} da variedad de nutrientes. Consultá con tu pediatra cuándo incorporarlo.`, cta: true });
   }
 
   // 8) Textura
@@ -171,12 +188,13 @@ export function suggestFoods({ entries, foods, user, now = Date.now(), n = 6 }) 
   const score = (f) => {
     const s = stats[f.id];
     let p = 0;
-    if (f.ricoEnHierro) p += 3;
+    if (f.ricoEnHierro && !plan?.groups?.length) p += 3;
     if (!s) p += 2; else p -= Math.min(s.count, 4) * 0.4;
     if (s?.reaction) p -= 10;
     if (recent.has(f.id)) p -= 2;
     if (f.alergeno && !s) p -= 1; // los alérgenos se sugieren aparte
     return p + Math.random() * 0.8;
   };
-  return foods.filter((f) => !stats[f.id]?.reaction).map((f) => [f, score(f)]).sort((a, b) => b[1] - a[1]).slice(0, n).map((x) => x[0]);
+  const plan = activePlan(user, now);
+  return foods.filter((f) => !stats[f.id]?.reaction && allowedByPlan(plan, f)).map((f) => [f, score(f)]).sort((a, b) => b[1] - a[1]).slice(0, n).map((x) => x[0]);
 }

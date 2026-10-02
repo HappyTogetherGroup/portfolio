@@ -1,6 +1,6 @@
 import * as store from './store.js';
 import {
-  advise, suggestFoods, ageOf, stageOf, foodStats, flatItems, streak, weekDays, startOfDay, DAY,
+  advise, suggestFoods, activePlan, allowedByPlan, ageOf, stageOf, foodStats, flatItems, streak, weekDays, startOfDay, DAY,
   UNITS, unitLabel, qtyText, MEALS, MEAL_NAMES, GROUPS, WEEKLY_GROUPS,
 } from './engine.js';
 
@@ -89,6 +89,7 @@ function babyView(u) {
 function adviceCard(a, i) {
   return `<div class="advice ${a.kind}" style="--i:${i}"><div class="ico" aria-hidden="true">${a.icon}</div>
     <div class="grow"><h3>${esc(a.title)}</h3><p>${esc(a.text)}</p>
+    ${a.noPed || a.kind === 'tip' && a.id === 'tip' ? '' : '<p class="small ped">👩‍⚕️ Consultalo con tu pediatra antes de aplicarlo.</p>'}
     ${a.allergen ? `<button class="btn ghost sm" style="margin-top:10px" data-act="allergen" data-id="${esc(a.allergen)}">Ver cómo introducirlo</button>` : ''}${a.cta ? `<button class="btn primary sm" style="margin-top:10px" data-act="log"${a.food ? ` data-food="${esc(a.food)}"` : ''}>Registrar comida</button>` : ''}</div></div>`;
 }
 
@@ -172,7 +173,8 @@ function tipsView(u) {
   const cats = ['todos', ...new Set(data.tips.map((t) => t.categoria))];
   return `<div class="stagger">
     <header class="topbar" style="--i:0"><div><p class="eyebrow">Para ${esc(u.baby.name)}</p><h1 class="display h1">Consejos</h1></div></header>
-    ${prog ? `<div class="card soft" style="--i:1"><p class="eyebrow">Etapa ${esc(prog.etapa)}</p><dl class="stage" style="margin:8px 0 0">
+    <div class="card sun" style="--i:1"><b>👩‍⚕️ Tu pediatra manda</b><p class="small muted" style="margin-top:4px">Estos consejos son generales. Si tu pediatra te dio otras indicaciones, seguí las suyas y cargalas en Perfil.</p></div>
+    ${prog ? `<div class="card soft" style="--i:1;margin-top:12px"><p class="eyebrow">Etapa ${esc(prog.etapa)}</p><dl class="stage" style="margin:8px 0 0">
       <div><dt>🍽️ Comidas</dt><dd>${esc(prog.comidasPorDia)}</dd></div><div><dt>🥄 Cantidad</dt><dd>${esc(prog.cantidadInicial)}</dd></div>
       <div><dt>🥣 Texturas</dt><dd>${esc(prog.texturas)}</dd></div><div><dt>🎯 Foco</dt><dd>${esc(prog.foco)}</dd></div></dl></div>` : ''}
     ${fuentes.cantidadesReferencia?.mordiscoCucharada ? `<div class="card sun" style="--i:2;margin-top:12px"><b>¿Cuánto es “un mordisco”?</b><p class="small muted" style="margin-top:4px">${esc(fuentes.cantidadesReferencia.mordiscoCucharada)}</p></div>` : ''}
@@ -190,6 +192,7 @@ function profileView(u) {
     <header class="topbar" style="--i:0"><div><p class="eyebrow">Cuenta local</p><h1 class="display h1">${esc(u.name)}</h1></div><span class="avatar" style="width:52px;height:52px">${esc(u.name[0].toUpperCase())}</span></header>
     <div class="card" style="--i:1"><div class="row"><span style="font-size:34px">👶</span><div class="grow"><b>${esc(u.baby.name)}</b><p class="small muted">Nació el ${new Date(u.baby.birth + 'T12:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</p></div><button class="btn ghost sm" data-act="edit-baby">Editar</button></div>
       <p class="small muted" style="margin-top:10px">${u.entries.length} comidas registradas desde el ${first}.</p></div>
+    <section class="section" style="--i:2"><h2 class="h2" style="margin-bottom:10px">Tu pediatra</h2><div class="list"><button data-act="edit-plan"><span>👩‍⚕️</span><span class="grow"><b>Indicaciones del pediatra</b><br><span class="small muted">${activePlan(u) ? 'Plan activo · tocá para editar' : 'Cargá qué alimentos te permitió y hasta cuándo'}</span></span></button></div></section>
     <section class="section" style="--i:2"><h2 class="h2" style="margin-bottom:10px">Tus datos</h2><div class="list">
       <button data-act="export-summary"><span>📋</span><span class="grow"><b>Resumen para el pediatra</b><br><span class="small muted">Compartir o copiar texto</span></span></button>
       <button data-act="export-json"><span>💾</span><span class="grow"><b>Descargar copia de seguridad</b><br><span class="small muted">Archivo .json con todos tus datos</span></span></button>
@@ -256,8 +259,9 @@ function openLogger(presetFood) {
       <div class="field"><span class="label">¿Qué comió?</span>
         <input class="input" id="food-q" placeholder="Buscá un alimento… palta, banana, zapallo" autocomplete="off" enterkeyhint="search">
         <div id="suggest"></div></div>
-      <div id="items"></div>
-      ${sugg.length ? `<div class="field"><span class="label">Ideas para hoy</span><div class="chips scroll" id="ideas">${sugg.map((f) => `<button class="chip" data-act="add-food" data-id="${f.id}">${esc(f.emoji)} ${esc(f.nombre)}</button>`).join('')}</div></div>` : ''}
+      <div id="plan-warn"></div><div id="items"></div>
+      <p class="small ped" id="qty-note" hidden>👩‍⚕️ Las cantidades son orientativas: consultá con tu pediatra cuánto darle.</p>
+      ${sugg.length ? `<div class="field"><span class="label">Ideas (consultá con tu pediatra)</span><div class="chips scroll" id="ideas">${sugg.map((f) => `<button class="chip" data-act="add-food" data-id="${f.id}">${esc(f.emoji)} ${esc(f.nombre)}</button>`).join('')}</div></div>` : ''}
       <div class="field"><span class="label">Textura</span><div class="seg" role="group">${[['pure', 'Puré'], ['aplastado', 'Aplastado'], ['trozos', 'Trozos'], ['dedos', 'Con las manos']].map(([k, l]) => `<button data-act="texture" data-id="${k}" aria-pressed="false" style="font-size:12.5px">${l}</button>`).join('')}</div></div>
       <div class="field"><span class="label">¿Hubo alguna reacción?</span><div class="seg" role="group">${[['none', 'Ninguna'], ['leve', 'Leve'], ['importante', 'Importante']].map(([k, l]) => `<button data-act="reaction" data-id="${k}" aria-pressed="${k === 'none'}">${l}</button>`).join('')}</div>
         <p class="small muted" id="react-help" hidden>Leve: algo de enrojecimiento o picazón alrededor de la boca. Importante: urticaria, hinchazón, vómitos repetidos o dificultad para respirar.</p></div>
@@ -303,6 +307,12 @@ function paintItems() {
       <div class="row between" style="margin-top:12px"><span class="small muted">¿Le gustó?</span><div class="faces">${faceSet.map(([e, v]) => `<button class="face" data-act="like" data-i="${i}" data-v="${v}" aria-pressed="${it.like === v}" aria-label="Gusto ${v} de 5">${e}</button>`).join('')}</div></div></div>`;
   }).join('');
   const b = $('#save-btn'); if (b) b.disabled = !draft.items.length;
+  const qn = $('#qty-note'); if (qn) qn.hidden = !draft.items.length;
+  const plan = activePlan(store.me());
+  const off = draft.items.filter((it) => plan?.groups?.length && foodsById[it.foodId] && !allowedByPlan(plan, foodsById[it.foodId]));
+  const risky = draft.items.filter((it) => foodsById[it.foodId]?.alergeno && !Object.values(foodStats(store.me().entries, foodsById)).some((s) => s.food?.alergeno === foodsById[it.foodId].alergeno));
+  const w = $('#plan-warn');
+  if (w) w.innerHTML = [off.length && `<div class="advice warn" style="margin-bottom:10px"><div class="ico">👩‍⚕️</div><div><h3>Fuera de lo que indicó tu pediatra</h3><p>${off.map((i) => esc(i.name)).join(', ')} no está en tu plan actual. Consultá antes de ofrecerlo.</p></div></div>`, risky.length && `<div class="advice tip" style="margin-bottom:10px"><div class="ico">🧪</div><div><h3>Alérgeno nuevo</h3><p>${risky.map((i) => esc(i.name)).join(', ')}: consultá con tu pediatra cuándo y cómo introducirlo.</p></div></div>`].filter(Boolean).join('');
 }
 function saveEntry() {
   if (!draft?.items.length) return;
@@ -340,6 +350,17 @@ function openBabyEditor() {
     <button class="btn primary block" type="submit">Guardar</button></form>` });
 }
 
+function openPlanEditor() {
+  const u = store.me(), p = u.plan || { groups: [], until: '', note: '' };
+  openSheet({ title: 'Indicaciones del pediatra', body: `<form class="col" data-form="plan" style="gap:18px">
+    <p class="muted small">Cargá lo que te indicó. Mientras esté activo, la app no te sugiere alimentos fuera de este plan.</p>
+    <div class="field"><span class="label">Grupos permitidos por ahora (vacío = sin restricción)</span><div class="chips">${Object.entries(GROUPS).map(([k, g]) => `<button type="button" class="chip" data-act="plan-group" data-id="${k}" aria-pressed="${p.groups.includes(k)}">${g.e} ${g.n}</button>`).join('')}</div></div>
+    <label class="field"><span class="label">Hasta el próximo control</span><input class="input" type="date" name="until" value="${esc(p.until || '')}"></label>
+    <label class="field"><span class="label">Qué te dijo (opcional)</span><textarea class="input" name="note" maxlength="300" placeholder="Ej: dos semanas de verdura y fruta; en el control vemos si sumamos carne">${esc(p.note || '')}</textarea></label>
+    <button class="btn primary block" type="submit">Guardar plan</button>
+    ${u.plan ? '<button class="btn danger block" type="button" data-act="clear-plan">Quitar plan</button>' : ''}</form>` });
+}
+
 function summaryText(u) {
   const age = ageOf(u.baby.birth);
   const stats = Object.values(foodStats(u.entries, foodsById)).sort((a, b) => a.first - b.first);
@@ -375,6 +396,9 @@ document.addEventListener('click', async (ev) => {
     case 'more-tips': ui.tipLimit += 10; return render();
     case 'allergen': return openAllergen(id);
     case 'edit-baby': return openBabyEditor();
+    case 'edit-plan': return openPlanEditor();
+    case 'plan-group': return el.setAttribute('aria-pressed', el.getAttribute('aria-pressed') !== 'true');
+    case 'clear-plan': store.setPlan(null); closeSheet(); render(); return toast('Plan quitado');
     case 'meal': draft.meal = id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#meal-label').textContent = MEAL_NAMES[id]; return;
     case 'texture': { const on = draft.texture === id; draft.texture = on ? '' : id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', !on && b === el)); return; }
     case 'reaction': draft.reaction = id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#react-help').hidden = id === 'none'; return;
@@ -411,6 +435,7 @@ document.addEventListener('submit', (ev) => {
   switch (form.dataset.form) {
     case 'signin': store.signIn(fd.get('name')); ui.tab = 'hoy'; return render();
     case 'baby': store.setBaby({ name: fd.get('baby').trim(), birth: fd.get('birth') }); return render();
+    case 'plan': store.setPlan({ groups: [...form.querySelectorAll('[data-act=plan-group][aria-pressed=true]')].map((b) => b.dataset.id), until: fd.get('until') || '', note: (fd.get('note') || '').trim() }); closeSheet(); render(); return toast('Plan guardado');
     case 'baby-edit': store.setBaby({ name: fd.get('baby').trim(), birth: fd.get('birth') }); closeSheet(); render(); return toast('Guardado');
   }
 });

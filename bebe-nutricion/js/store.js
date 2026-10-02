@@ -29,6 +29,7 @@ export function signIn(name) {
 }
 export function signOut() { db.current = null; save(); }
 export function setBaby(baby) { me().baby = baby; save(); }
+export function setPlan(plan) { me().plan = plan; save(); }
 
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 export function addEntry(entry) {
