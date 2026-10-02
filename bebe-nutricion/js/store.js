@@ -33,7 +33,7 @@ export function setPlan(plan) { me().plan = plan; save(); }
 
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 export function addEntry(entry) {
-  const e = { id: uid(), ...entry };
+  const e = { id: uid(), by: me().name, ...entry };
   me().entries.push(e);
   save();
   return e;
@@ -44,6 +44,22 @@ export function updateEntry(id, patch) {
 }
 export function removeEntry(id) {
   const u = me(); u.entries = u.entries.filter((e) => e.id !== id); save();
+}
+
+export function markBackup() { me().lastBackup = Date.now(); save(); }
+
+// Combina datos de otro celular/persona en el perfil actual (une por id; no pisa lo local).
+export function mergeInto(data) {
+  if (!data || !Array.isArray(data.entries)) throw new Error('Datos inválidos');
+  const u = me();
+  const had = new Set(u.entries.map((e) => e.id));
+  let added = 0;
+  for (const e of data.entries) if (e && e.id && !had.has(e.id)) { u.entries.push(e); added++; }
+  u.entries.sort((a, b) => a.ts - b.ts);
+  if (!u.baby && data.baby) u.baby = data.baby;
+  if (!u.plan && data.plan) u.plan = data.plan;
+  save();
+  return added;
 }
 
 export function exportJSON() { return JSON.stringify(me(), null, 2); }

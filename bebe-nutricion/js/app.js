@@ -98,11 +98,13 @@ function mealCard(e) {
   const faces = ['', '😖', '😕', '😐', '🙂', '😍'];
   const react = e.reaction && e.reaction.level !== 'none' ? `<span class="chip tag warn">Reacción ${esc(e.reaction.level)}</span>` : '';
   return `<article class="card meal"><div class="meal-head"><span style="font-size:22px">${MEALS[e.meal] || '🍴'}</span>
-    <span class="when grow">${MEAL_NAMES[e.meal] || 'Comida'} <span class="time">${time}</span></span>${react}
+    <span class="when grow">${MEAL_NAMES[e.meal] || 'Comida'} <span class="time">${time}${e.by ? ' · ' + esc(e.by) : ''}</span></span>${react}
     <button class="icon-btn" style="width:36px;height:36px" data-act="del-entry" data-id="${e.id}" aria-label="Borrar comida">${ICON.trash}</button></div>
     ${e.items.map((it) => `<div class="item"><span class="emoji">${esc(it.emoji || foodsById[it.foodId]?.emoji || '🍽️')}</span><span class="grow"><b>${esc(it.name)}</b></span><span class="qty num">${esc(qtyText(it))}</span><span class="like">${faces[it.like] || ''}</span></div>`).join('')}
     ${e.note ? `<p class="small muted" style="margin-top:8px">“${esc(e.note)}”</p>` : ''}</article>`;
 }
+
+const backupDue = (u) => u.entries.length >= 3 && Date.now() - (u.lastBackup || Math.min(...u.entries.map((e) => e.ts))) > 7 * DAY;
 
 function todayView(u) {
   const now = Date.now(), today = startOfDay(now);
@@ -122,6 +124,7 @@ function todayView(u) {
       <div class="stat"><b class="num">${streak(u.entries)}</b><span>${streak(u.entries) === 1 ? 'día seguido' : 'días seguidos'}</span></div>
       <div class="stat"><b class="num">${todays.length}</b><span>comidas hoy</span></div></div>
     <div class="week" style="--i:2;margin-top:16px">${week.map((d) => `<div class="day ${d.on ? 'on' : ''} ${d.today ? 'today' : ''}">${d.label}<i>${d.on ? '✓' : ''}</i></div>`).join('')}</div>
+    ${backupDue(u) ? `<div class="advice tip" style="margin-top:20px"><div class="ico">💾</div><div class="grow"><h3>Hacé una copia de seguridad</h3><p>Pasó más de una semana. Si cambiás de celular o borrás los datos del navegador, se pierde todo.</p><button class="btn primary sm" style="margin-top:10px" data-act="backup">Guardar copia</button></div></div>` : ''}
     <section class="section"><div class="section-head"><h2 class="h2">Para hoy</h2></div><div class="col stagger">${advice.slice(0, 4).map((a, i) => adviceCard(a, i + 3)).join('')}</div></section>
     <section class="section"><div class="section-head"><h2 class="h2">Comidas de hoy</h2></div>
       ${todays.length ? todays.map(mealCard).join('') : `<div class="card empty"><div class="big">🍌</div><p><b>Todavía no hay comidas hoy</b></p><p class="small muted" style="margin:4px 0 14px">Anotá lo que le des, aunque sea un solo mordisco.</p><button class="btn primary" data-act="log">Registrar comida</button></div>`}</section>
@@ -195,8 +198,9 @@ function profileView(u) {
     <section class="section" style="--i:2"><h2 class="h2" style="margin-bottom:10px">Tu pediatra</h2><div class="list"><button data-act="edit-plan"><span>👩‍⚕️</span><span class="grow"><b>Indicaciones del pediatra</b><br><span class="small muted">${activePlan(u) ? 'Plan activo · tocá para editar' : 'Cargá qué alimentos te permitió y hasta cuándo'}</span></span></button></div></section>
     <section class="section" style="--i:2"><h2 class="h2" style="margin-bottom:10px">Tus datos</h2><div class="list">
       <button data-act="export-summary"><span>📋</span><span class="grow"><b>Resumen para el pediatra</b><br><span class="small muted">Compartir o copiar texto</span></span></button>
-      <button data-act="export-json"><span>💾</span><span class="grow"><b>Descargar copia de seguridad</b><br><span class="small muted">Archivo .json con todos tus datos</span></span></button>
-      <button data-act="import-json"><span>📥</span><span class="grow"><b>Restaurar copia</b><br><span class="small muted">Cargar un archivo guardado</span></span></button></div>
+      <button data-act="backup"><span>💾</span><span class="grow"><b>Guardar copia (Drive, WhatsApp…)</b><br><span class="small muted">${u.lastBackup ? 'Última: ' + new Date(u.lastBackup).toLocaleDateString('es-AR') : 'Todavía no hiciste una copia'}</span></span></button>
+      <button data-act="qr-menu"><span>📲</span><span class="grow"><b>Pasar o compartir con otro celular</b><br><span class="small muted">Con códigos QR, sin internet</span></span></button>
+      <button data-act="import-json"><span>📥</span><span class="grow"><b>Restaurar o combinar copia</b><br><span class="small muted">Cargar un archivo guardado</span></span></button></div>
       <input type="file" id="file-in" accept="application/json,.json" hidden></section>
     <section class="section" style="--i:3"><div class="list">
       <button data-act="signout"><span>🔄</span><span class="grow"><b>Cambiar de usuario</b></span></button>
@@ -215,6 +219,7 @@ function openSheet({ title, body, foot = '', onMount }) {
   onMount?.(root);
 }
 function closeSheet(instant) {
+  stopQr();
   const root = $('#sheet-root');
   if (!root.firstChild) return;
   const done = () => { root.innerHTML = ''; document.body.style.overflow = ''; };
@@ -416,7 +421,10 @@ document.addEventListener('click', async (ev) => {
       try { await navigator.clipboard.writeText(text); toast('Resumen copiado'); } catch { download('resumen.txt', text, 'text/plain'); }
       return;
     }
-    case 'export-json': download(`cucharadas-${u.id.replace(/\W+/g, '-')}.json`, store.exportJSON()); return toast('Copia descargada');
+    case 'backup': return backup();
+    case 'qr-menu': return openQrMenu();
+    case 'qr-show': return showQr();
+    case 'qr-scan': return scanQr();
     case 'import-json': return $('#file-in').click();
     case 'delete-profile': if (confirm('Se borran todos los datos de este perfil en este celular. ¿Seguro?')) { store.deleteProfile(); render(); } return;
   }
@@ -425,7 +433,8 @@ document.addEventListener('click', async (ev) => {
 document.addEventListener('change', async (ev) => {
   if (ev.target.id !== 'file-in') return;
   const f = ev.target.files[0]; if (!f) return;
-  try { store.importJSON(await f.text()); ui.tab = 'hoy'; render(); toast('Copia restaurada'); } catch { toast('No pude leer ese archivo'); }
+  try { const n = store.mergeInto(JSON.parse(await f.text())); render(); toast(n ? `Se sumaron ${n} comidas` : 'No había comidas nuevas'); } catch { toast('No pude leer ese archivo'); }
+  ev.target.value = '';
 });
 
 document.addEventListener('submit', (ev) => {
@@ -439,6 +448,91 @@ document.addEventListener('submit', (ev) => {
     case 'baby-edit': store.setBaby({ name: fd.get('baby').trim(), birth: fd.get('birth') }); closeSheet(); render(); return toast('Guardado');
   }
 });
+
+// ---------- Copia de seguridad y traspaso por QR ----------
+async function backup() {
+  const u = store.me(), name = `cucharadas-${u.id.replace(/\W+/g, '-')}-${new Date().toISOString().slice(0, 10)}.json`;
+  const file = new File([store.exportJSON()], name, { type: 'application/json' });
+  if (navigator.canShare?.({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: 'Copia de Primeras Cucharadas' }); store.markBackup(); render(); return toast('Copia guardada'); }
+    catch (e) { if (e.name === 'AbortError') return; }
+  }
+  download(name, store.exportJSON()); store.markBackup(); render(); toast('Copia descargada');
+}
+
+const loadScript = (src) => new Promise((ok, err) => { if (document.querySelector(`script[src="${src}"]`)) return ok(); const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = err; document.head.append(s); });
+const b64 = { enc: (u8) => btoa(String.fromCharCode(...u8)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''), dec: (t) => Uint8Array.from(atob(t.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0)) };
+async function pack(text) {
+  const raw = new TextEncoder().encode(text);
+  if (!window.CompressionStream) return 'r' + b64.enc(raw);
+  const buf = await new Response(new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer();
+  const out = new Uint8Array(buf), parts = [];
+  for (let i = 0; i < out.length; i += 8000) parts.push(String.fromCharCode(...out.subarray(i, i + 8000)));
+  return 'z' + btoa(parts.join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+async function unpack(t) {
+  const u8 = b64.dec(t.slice(1));
+  if (t[0] === 'r') return new TextDecoder().decode(u8);
+  return new Response(new Blob([u8]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+}
+
+let qrTimer = null, camStream = null;
+function stopQr() { clearInterval(qrTimer); qrTimer = null; camStream?.getTracks().forEach((t) => t.stop()); camStream = null; }
+function openQrMenu() {
+  openSheet({ title: 'Pasar a otro celular', body: `<div class="col" style="gap:14px">
+    <p class="muted">Sirve para cambiar de celular o para que dos personas usen los mismos datos. Todo viaja de un teléfono a otro, sin internet ni cuentas.</p>
+    <button class="btn primary block" data-act="qr-show">📤 Mostrar mi código</button>
+    <button class="btn ghost block" data-act="qr-scan">📷 Escanear el código del otro celular</button>
+    <div class="card soft small"><b>Para compartir entre dos personas</b><p class="muted" style="margin-top:4px">Cada una entra con su nombre en su celular. Una muestra su código, la otra lo escanea y se suman las comidas nuevas. Después lo hacen al revés. Cada comida queda con el nombre de quien la anotó. Hoy no se sincroniza solo: hay que repetirlo cada tanto, y una comida borrada no se borra en el otro celular.</p></div></div>` });
+}
+async function showQr() {
+  const u = store.me();
+  openSheet({ title: 'Mi código', body: `<div class="col" style="align-items:center;gap:14px"><canvas id="qr" style="width:100%;max-width:340px;aspect-ratio:1;background:#fff;border-radius:18px;padding:10px"></canvas><p class="small muted" id="qr-info" style="text-align:center">Preparando…</p><p class="small muted" style="text-align:center">En el otro celular tocá “Escanear” y apuntá la cámara. Mantené esta pantalla encendida hasta que termine.</p></div>` });
+  try {
+    await loadScript('vendor/qrcode.js');
+    const data = await pack(store.exportJSON()), size = 450, total = Math.ceil(data.length / size), id = Math.random().toString(36).slice(2, 6);
+    const frames = Array.from({ length: total }, (_, i) => `CUC1|${id}|${i + 1}|${total}|${data.slice(i * size, (i + 1) * size)}`);
+    const cv = $('#qr'); if (!cv) return;
+    let k = 0;
+    const draw = () => {
+      const q = qrcode(0, 'L'); q.addData(frames[k % total]); q.make();
+      const n = q.getModuleCount(), cell = Math.floor(800 / (n + 2)), px = cell * (n + 2);
+      cv.width = cv.height = px; const g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, px, px); g.fillStyle = '#000';
+      for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) g.fillRect((c + 1) * cell, (r + 1) * cell, cell, cell);
+      const info = $('#qr-info'); if (info) info.textContent = total > 1 ? `Parte ${(k % total) + 1} de ${total} · pasan solas` : 'Código listo';
+      k++;
+    };
+    draw(); if (total > 1) qrTimer = setInterval(draw, 650);
+    store.markBackup();
+  } catch { const i = $('#qr-info'); if (i) i.textContent = 'No pude generar el código.'; }
+}
+async function scanQr() {
+  openSheet({ title: 'Escanear código', body: `<div class="col" style="align-items:center;gap:12px"><video id="cam" playsinline muted style="width:100%;border-radius:18px;background:#000;aspect-ratio:1;object-fit:cover"></video><div class="bar" style="width:100%"><i id="scan-bar" style="width:0"></i></div><p class="small muted" id="scan-info" style="text-align:center">Apuntá a la pantalla del otro celular…</p></div>` });
+  try {
+    await loadScript('vendor/jsQR.js');
+    camStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
+    const v = $('#cam'); v.srcObject = camStream; await v.play();
+    const cv = document.createElement('canvas'), g = cv.getContext('2d', { willReadFrequently: true });
+    const got = new Map(); let sid = null, total = 0;
+    qrTimer = setInterval(async () => {
+      if (!v.videoWidth) return;
+      cv.width = v.videoWidth; cv.height = v.videoHeight; g.drawImage(v, 0, 0);
+      const code = jsQR(g.getImageData(0, 0, cv.width, cv.height).data, cv.width, cv.height);
+      const m = code?.data.match(/^CUC1\|(\w+)\|(\d+)\|(\d+)\|(.+)$/s); if (!m) return;
+      if (sid !== m[1]) { sid = m[1]; got.clear(); }
+      total = +m[3]; got.set(+m[2], m[4]);
+      $('#scan-bar').style.width = `${(got.size / total) * 100}%`;
+      $('#scan-info').textContent = `Recibidas ${got.size} de ${total}`;
+      if (got.size === total) {
+        stopQr();
+        try {
+          const text = await unpack(Array.from({ length: total }, (_, i) => got.get(i + 1)).join(''));
+          const n = store.mergeInto(JSON.parse(text)); closeSheet(); render(); celebrate(); toast(n ? `Se sumaron ${n} comidas` : 'Ya tenías todo');
+        } catch { toast('El código no se pudo leer'); closeSheet(); }
+      }
+    }, 150);
+  } catch { const i = $('#scan-info'); if (i) i.textContent = 'No pude usar la cámara. Revisá el permiso en el navegador.'; }
+}
 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
 

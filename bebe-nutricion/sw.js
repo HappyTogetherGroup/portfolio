@@ -1,6 +1,6 @@
 // Service worker: cache-first con actualización en segundo plano → funciona sin internet.
-const CACHE = 'cucharadas-v1';
-const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'css/app.css', 'js/app.js', 'js/store.js', 'js/engine.js',
+const CACHE = 'cucharadas-v2';
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'css/app.css', 'js/app.js', 'js/store.js', 'js/engine.js', 'vendor/qrcode.js', 'vendor/jsQR.js',
   'data/foods.json', 'data/alergenos.json', 'data/tips.json', 'data/fuentes.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
