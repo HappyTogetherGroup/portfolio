@@ -1,0 +1,135 @@
+{
+ "fuentes": [
+  {
+   "id": "oms",
+   "nombre": "OMS - Alimentación complementaria",
+   "tipo": "organismo",
+   "url": "https://www.who.int/health-topics/complementary-feeding",
+   "resumen": "Inicio a los 6 meses, 2-3 comidas a los 6-8 m y 3-4 desde los 9 m, alimentación responsiva e higiene."
+  },
+  {
+   "id": "msal_gpc",
+   "nombre": "Ministerio de Salud de la Nación - Guía de práctica clínica sobre alimentación complementaria (menores de 2 años, 2021)",
+   "tipo": "organismo",
+   "url": "http://leg.msal.gov.ar/pdf/msres1533_2021anexo.pdf",
+   "resumen": "Guía argentina: inicio a los 6 meses, carnes por el hierro, huevo, pescado, gluten, yogur y queso desde los 6 m, higiene y conservación."
+  },
+  {
+   "id": "msal_guias",
+   "nombre": "Ministerio de Salud de la Nación - Guías alimentarias para la población argentina (2015)",
+   "tipo": "organismo",
+   "url": "https://iah.msal.gov.ar/doc/Documento110.pdf",
+   "resumen": "Marco general de la alimentación saludable en Argentina (resumen ejecutivo); las Guías para la población infantil 2010 siguen vigentes en lo no actualizado."
+  },
+  {
+   "id": "aap",
+   "nombre": "AAP / HealthyChildren - Starting Solid Foods",
+   "tipo": "sociedad",
+   "url": "https://www.healthychildren.org/English/ages-stages/baby/feeding-nutrition/Pages/Starting-Solid-Foods.aspx",
+   "resumen": "Señales de preparación, cantidades iniciales, hierro y zinc, alérgenos sin demora y alimentos de riesgo de atragantamiento."
+  },
+  {
+   "id": "espghan",
+   "nombre": "ESPGHAN - Complementary Feeding: position paper (Fewtrell et al., 2017)",
+   "tipo": "sociedad",
+   "url": "https://www.espghan.org/dam/jcr%3A3d960daa-e2f3-499f-9df9-2da682976cec/2017%20Complementary_Feeding__A_Position_Paper_by_the.21.pdf",
+   "resumen": "Posición europea: no antes de 4 meses ni después de 6, variedad, texturas a tiempo y repetir exposiciones sin presión."
+  },
+  {
+   "id": "aepap",
+   "nombre": "AEPap - Alimentación de 6 a 24 meses (Programa de salud infantil)",
+   "tipo": "sociedad",
+   "url": "https://aepap.org/wp-content/uploads/2024/02/PSI-Alimentacion-de-6-a-24-meses.pdf",
+   "resumen": "Consistencias, frecuencia de comidas, alimentos a evitar y consejo nutricional para pediatras de atención primaria."
+  },
+  {
+   "id": "aep",
+   "nombre": "AEP En Familia - Alimentación complementaria",
+   "tipo": "sociedad",
+   "url": "https://enfamilia.aeped.es/edades-etapas/alimentacion-complementaria",
+   "resumen": "Guía para familias de la Asociación Española de Pediatría sobre introducción de alimentos y texturas."
+  },
+  {
+   "id": "solidstarts",
+   "nombre": "Solid Starts - Guía de alimentación de 6 meses",
+   "tipo": "divulgador",
+   "url": "https://solidstarts.com/6-month-feeding-schedule/",
+   "resumen": "Plataforma creada por pediatras, terapeutas de alimentación y nutricionistas: porciones iniciales, rutina, agua y alimentación responsiva."
+  },
+  {
+   "id": "ss_gagging",
+   "nombre": "Solid Starts - Arcada vs. atragantamiento",
+   "tipo": "divulgador",
+   "url": "https://solidstarts.com/gagging/",
+   "resumen": "Cómo distinguir la arcada (ruidosa, protectora) del atragantamiento (silencioso) y cómo actuar."
+  },
+  {
+   "id": "ss_sizes",
+   "nombre": "Solid Starts - Tamaños y formas de alimentos por edad",
+   "tipo": "divulgador",
+   "url": "https://solidstarts.com/safe-food-sizes-shapes-for-babies/",
+   "resumen": "Cómo cortar y servir alimentos de forma segura según la edad del bebé."
+  },
+  {
+   "id": "critzmann",
+   "nombre": "Dra. Sabrina Critzmann (pediatra UBA, cofundadora de la Escuela Argentina de BLW)",
+   "tipo": "divulgador",
+   "url": "https://www.planetadelibros.com/autor/sabrina-critzmann/000050903",
+   "resumen": "Pediatra argentina que divulga crianza respetuosa y alimentación complementaria/BLW; autora de 'Comer y criar'."
+  },
+  {
+   "id": "gonzalez",
+   "nombre": "Dr. Carlos González (pediatra, autor de 'Mi niño no me come')",
+   "tipo": "divulgador",
+   "url": "https://www.planetadelibros.com/autor/carlos-gonzalez/000000631",
+   "resumen": "Pediatra español que defiende no forzar a comer y respetar el apetito del niño; ver sus libros como lectura complementaria."
+  }
+ ],
+ "progresionPorEtapa": [
+  {
+   "etapa": "6m",
+   "comidasPorDia": "1 a 2 comidas, más leche materna o fórmula a demanda",
+   "cantidadInicial": "1 a 2 cucharaditas, subiendo a 2-3 cucharadas por comida",
+   "texturas": "Puré espeso y bastones blandos que pueda agarrar con el puño",
+   "foco": "Exploración, carne/huevo/legumbres por el hierro, agua en vasito"
+  },
+  {
+   "etapa": "7m",
+   "comidasPorDia": "2 a 3 comidas",
+   "cantidadInicial": "3 a 5 cucharadas por comida (a demanda)",
+   "texturas": "Puré aplastado con grumos y trozos blandos más variados",
+   "foco": "Variedad de sabores y grupos de alimentos, repetir los rechazados"
+  },
+  {
+   "etapa": "8m",
+   "comidasPorDia": "2 a 3 comidas, más 1 colación si tiene hambre",
+   "cantidadInicial": "4 a 6 cucharadas, según apetito",
+   "texturas": "Pinza con dedos, bocaditos chicos y blandos, comida picada",
+   "foco": "Autonomía con cuchara y manos, hierro en cada comida principal"
+  },
+  {
+   "etapa": "9m",
+   "comidasPorDia": "3 comidas y 1 colación",
+   "cantidadInicial": "Alrededor de 1/2 taza por comida, a demanda",
+   "texturas": "Trozos pequeños de la comida familiar, texturas variadas",
+   "foco": "Mayor consistencia, colaciones nutritivas, evitar alimentos duros o redondos"
+  },
+  {
+   "etapa": "10-11m",
+   "comidasPorDia": "3 a 4 comidas y 1 a 2 colaciones",
+   "cantidadInicial": "1/2 taza por comida, a demanda",
+   "texturas": "Picados y trozos blandos; casi igual a la mesa familiar",
+   "foco": "Comer en familia, sin sal ni azúcar agregados, transición a la comida del hogar"
+  },
+  {
+   "etapa": "12m",
+   "comidasPorDia": "3 comidas y 1 a 2 colaciones",
+   "cantidadInicial": "1/2 a 3/4 taza por comida, a demanda",
+   "texturas": "Comida familiar adaptada, bocados chicos y cuidados",
+   "foco": "Mesa familiar; la leche de vaca puede empezar a ofrecerse como bebida, siempre con indicación del pediatra"
+  }
+ ],
+ "cantidadesReferencia": {
+  "mordiscoCucharada": "1 mordisco = el bocado que cabe en la boca del bebé (aprox. 1/2 a 1 cucharadita); 1 cucharadita = unos 5 ml; 1 cucharada = unos 15 ml (3 cucharaditas). Rango típico por comida: a los 6 meses, 1 cucharadita a 2-3 cucharadas; a los 7-8 meses, 3 a 6 cucharadas; a los 9-11 meses, 1/2 taza (unas 8 cucharadas) o más. Son rangos orientativos, no metas: manda el apetito del bebé y lo indica su pediatra."
+ }
+}

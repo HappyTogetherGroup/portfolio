@@ -1,0 +1,1511 @@
+[
+ {
+  "id": "palta",
+  "nombre": "Palta",
+  "emoji": "🥑",
+  "grupo": "frutas",
+  "nutrientes": [
+   "grasas",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisada con tenedor, sola o mezclada con otra papilla.",
+   "blw": "Gajos gruesos o mitad con cáscara para agarrar; rebozada en semillas molidas si resbala."
+  },
+  "seguridad": "Que esté bien madura y blanda; evitá trozos duros o cubitos.",
+  "tip": "Grasa saludable y muy calórica, ideal como primer alimento.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "banana",
+  "nombre": "Banana",
+  "emoji": "🍌",
+  "grupo": "frutas",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisada con tenedor.",
+   "blw": "Banana entera pelada a medias (dejá la cáscara de agarre) o en bastones gruesos."
+  },
+  "seguridad": "Evitá rodajas finas redondas; ofrecela entera o en bastones.",
+  "tip": "Si está muy madura es más laxante; verde puede constipar.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "manzana",
+  "nombre": "Manzana",
+  "emoji": "🍎",
+  "grupo": "frutas",
+  "nutrientes": [
+   "fibra",
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida al vapor o al horno y pisada o procesada.",
+   "blw": "Cocida bien blanda en gajos grandes; cruda solo rallada."
+  },
+  "seguridad": "La manzana cruda en trozos es riesgo de atragantamiento: cocinala o rallala.",
+  "tip": "Cocida con canela es una colación clásica y suave.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "pera",
+  "nombre": "Pera",
+  "emoji": "🍐",
+  "grupo": "frutas",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Madura pisada o cocida y procesada.",
+   "blw": "Gajos grandes de pera muy madura con cáscara fina."
+  },
+  "seguridad": "Si no está bien madura es dura: cocinala.",
+  "tip": "Ayuda con la constipación.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "durazno",
+  "nombre": "Durazno",
+  "emoji": "🍑",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaC",
+   "vitaminaA"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Maduro pelado y pisado, o cocido.",
+   "blw": "Gajos grandes muy maduros, pelados."
+  },
+  "seguridad": "Pelalo: la piel puede resbalar y trabarse; descartá carozo.",
+  "tip": "Suele ser laxante, útil con constipación.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "ciruela",
+  "nombre": "Ciruela",
+  "emoji": "🟣",
+  "grupo": "frutas",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida y pisada, también en agüita de cocción.",
+   "blw": "Ciruela madura pelada en gajos, sin carozo."
+  },
+  "seguridad": "Sin carozo y pelada; las pasas o secas ofrecerlas siempre hidratadas y picadas.",
+  "tip": "Muy buena aliada contra la constipación.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "naranja",
+  "nombre": "Naranja",
+  "emoji": "🍊",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Jugo recién exprimido en cucharadita o gajos pisados, sin semillas.",
+   "blw": "Gajo pelado sin membrana ni semillas, partido."
+  },
+  "seguridad": "Quitá semillas y la piel blanca del gajo; no ofrezcas gajos enteros.",
+  "tip": "Ayuda a absorber el hierro si la das junto a legumbres o carne.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "mandarina",
+  "nombre": "Mandarina",
+  "emoji": "🍊",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Gajos pelados y pisados, sin semillas.",
+   "blw": "Gajos pelados sin membrana, partidos al medio."
+  },
+  "seguridad": "Sin semillas y partida; no enteros por el riesgo de atragantamiento.",
+  "tip": "Buena fuente de vitamina C.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "frutilla",
+  "nombre": "Frutilla",
+  "emoji": "🍓",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisada o procesada.",
+   "blw": "Cortada al medio o en cuartos según tamaño; entera grande si es blanda."
+  },
+  "seguridad": "Cortá en cuartos si son chicas.",
+  "tip": "Puede dar enrojecimiento perioral, que suele ser irritación por acidez y no alergia.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "arandanos",
+  "nombre": "Arándanos",
+  "emoji": "🫐",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisados con tenedor.",
+   "blw": "Aplastados o cortados al medio."
+  },
+  "seguridad": "Nunca enteros: aplastalos o cortalos.",
+  "tip": "Antioxidantes; manchan mucho, ¡usá babero!",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "kiwi",
+  "nombre": "Kiwi",
+  "emoji": "🥝",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisado, maduro.",
+   "blw": "Mitad con cáscara para sostener o gajos maduros."
+  },
+  "seguridad": "Puede resbalar: ofrecelo bien maduro.",
+  "tip": "Muy rico en vitamina C; puede dar irritación en la boca.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "melon",
+  "nombre": "Melón",
+  "emoji": "🍈",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaA"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisado muy maduro.",
+   "blw": "Bastones gruesos de melón maduro y blando."
+  },
+  "seguridad": "Evitá trozos duros o cubitos.",
+  "tip": "Hidratante y suave.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "sandia",
+  "nombre": "Sandía",
+  "emoji": "🍉",
+  "grupo": "frutas",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisada sin semillas.",
+   "blw": "Bastones gruesos sin semillas."
+  },
+  "seguridad": "Sacá todas las semillas.",
+  "tip": "Ideal para el calor.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "mango",
+  "nombre": "Mango",
+  "emoji": "🥭",
+  "grupo": "frutas",
+  "nutrientes": [
+   "vitaminaA",
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pisado muy maduro.",
+   "blw": "Tiras gruesas con cáscara para agarrar (sin carozo)."
+  },
+  "seguridad": "Resbala: dejá un poco de cáscara y rebozá en coco rallado si querés.",
+  "tip": "Rico en vitamina A.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "zapallo",
+  "nombre": "Zapallo",
+  "emoji": "🎃",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaA",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocido al vapor o al horno y pisado.",
+   "blw": "Bastones o gajos asados blandos."
+  },
+  "seguridad": "Cocinalo hasta que se aplaste con la lengua.",
+  "tip": "Sabor dulce, muy bien aceptado.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "zapallito",
+  "nombre": "Zapallito",
+  "emoji": "🥒",
+  "grupo": "verduras",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido y procesado.",
+   "blw": "Bastones cocidos blandos."
+  },
+  "seguridad": "Cocinalo bien blando.",
+  "tip": "Suave, buena primera verdura.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "zanahoria",
+  "nombre": "Zanahoria",
+  "emoji": "🥕",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaA",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida al vapor y pisada.",
+   "blw": "Bastón grueso muy bien cocido."
+  },
+  "seguridad": "Nunca cruda en trozos: es riesgo de atragantamiento.",
+  "tip": "Con una gotita de aceite se absorbe mejor la vitamina A.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "papa",
+  "nombre": "Papa",
+  "emoji": "🥔",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervida y pisada con un poco de leche o caldo sin sal.",
+   "blw": "Bastones gruesos hervidos o al horno."
+  },
+  "seguridad": "Sin sal; las papas fritas no.",
+  "tip": "Base de muchas papillas, combinala con carne para hierro.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "batata",
+  "nombre": "Batata",
+  "emoji": "🍠",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaA",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervida o al horno, pisada.",
+   "blw": "Bastones gruesos al horno."
+  },
+  "seguridad": "Cocida y blanda.",
+  "tip": "Dulce y rica en vitamina A.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "calabaza",
+  "nombre": "Calabaza",
+  "emoji": "🟠",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaA"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervida y pisada.",
+   "blw": "Gajos horneados blandos."
+  },
+  "seguridad": "Cocida bien blanda.",
+  "tip": "Podés mezclarla con arroz o lentejas.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "choclo",
+  "nombre": "Choclo",
+  "emoji": "🌽",
+  "grupo": "verduras",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Granos cocidos procesados y colados.",
+   "blw": "Mazorca entera hervida para chupetear (sin morder trozos) o granos aplastados."
+  },
+  "seguridad": "Los granos enteros son riesgo de atragantamiento: aplastalos. Supervisá la mazorca.",
+  "tip": "Fibra; la cáscara de los granos puede verse en la caca, es normal.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "brocoli",
+  "nombre": "Brócoli",
+  "emoji": "🥦",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaC",
+   "vitaminaA",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido al vapor y procesado.",
+   "blw": "Arbolitos grandes al vapor con tallo para agarrar."
+  },
+  "seguridad": "Cocinalo bien blando.",
+  "tip": "El tallo sirve de mango natural.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "coliflor",
+  "nombre": "Coliflor",
+  "emoji": "🤍",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaC",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervida y pisada.",
+   "blw": "Arbolitos al vapor."
+  },
+  "seguridad": "Cocinada bien blanda.",
+  "tip": "Puede dar gases; empezá de a poco.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "espinaca",
+  "nombre": "Espinaca",
+  "emoji": "🥬",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaA",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida, picada fina y mezclada con puré de zapallo o papa.",
+   "blw": "Picada fina dentro de tortillas, omelette o hamburguesitas."
+  },
+  "seguridad": "Lavala bien (las hojas verdes tienen más riesgo de E. coli) y picala fina: los restos pueden dar arcadas. Contiene nitratos naturales: variá las verduras de hoja y, si hacés puré casero, consumilo enseguida o descartalo a 1-2 días en heladera.",
+  "tip": "Se la conoce como rica en hierro, pero su hierro es moderado y los oxalatos reducen la absorción; cocinala y combinala con vitamina C.",
+  "fuente": "https://solidstarts.com/foods/spinach/"
+ },
+ {
+  "id": "acelga",
+  "nombre": "Acelga",
+  "emoji": "🥬",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaA"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervida, escurrida y procesada en poca cantidad.",
+   "blw": "Dentro de tortillitas o budines."
+  },
+  "seguridad": "Verdura de hoja con nitratos naturales: usala en porciones moderadas y variá. Lavala bien y picala fina. (Criterio común en pediatría hispana; no pude abrir la página de la AEP/SAP para confirmarlo.)",
+  "tip": "Mezclala con otras verduras.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "remolacha",
+  "nombre": "Remolacha",
+  "emoji": "🟣",
+  "grupo": "verduras",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervida y pisada.",
+   "blw": "Bastones cocidos blandos."
+  },
+  "seguridad": "Contiene nitratos naturales: ofrecela de a ratos y no a diario en grandes cantidades (criterio común en pediatría; sin fuente primaria abierta). Cocida y blanda.",
+  "tip": "Puede teñir la caca y la orina de rojo; es inofensivo.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "berenjena",
+  "nombre": "Berenjena",
+  "emoji": "🍆",
+  "grupo": "verduras",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Asada y pisada sin la piel.",
+   "blw": "Bastones asados blandos."
+  },
+  "seguridad": "Cocinala bien para quitar el amargor.",
+  "tip": "Absorbe mucho aceite; asala sin exceso.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "tomate",
+  "nombre": "Tomate",
+  "emoji": "🍅",
+  "grupo": "verduras",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pelado, sin semillas y cocido en salsa.",
+   "blw": "Gajos de tomate maduro pelado."
+  },
+  "seguridad": "Los tomates cherry deben cortarse en cuartos.",
+  "tip": "Si la acidez irrita la cola, ofrecelo cocido.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "arvejas",
+  "nombre": "Arvejas",
+  "emoji": "🟢",
+  "grupo": "verduras",
+  "nutrientes": [
+   "proteina",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervidas y procesadas, coladas.",
+   "blw": "Aplastadas con tenedor."
+  },
+  "seguridad": "Las arvejas enteras redondas son riesgo: aplastalas.",
+  "tip": "Aportan proteína vegetal y fibra.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "chauchas",
+  "nombre": "Chauchas",
+  "emoji": "🫛",
+  "grupo": "verduras",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervidas y procesadas.",
+   "blw": "Cocidas bien blandas, enteras para sostener."
+  },
+  "seguridad": "Quitá hilos y cocinalas bien.",
+  "tip": "Combinan bien con papa.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "puerro",
+  "nombre": "Puerro",
+  "emoji": "🧅",
+  "grupo": "verduras",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido en papillas.",
+   "blw": "Mezclado en sopas y purés."
+  },
+  "seguridad": "Cocido bien blando.",
+  "tip": "Da sabor sin necesidad de sal.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "cebolla",
+  "nombre": "Cebolla",
+  "emoji": "🧅",
+  "grupo": "verduras",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Rehogada o hervida en papillas.",
+   "blw": "En tortillitas bien cocida."
+  },
+  "seguridad": "Nunca cruda ni en trozos.",
+  "tip": "Aromatiza sin sal.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "pepino",
+  "nombre": "Pepino",
+  "emoji": "🥒",
+  "grupo": "verduras",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Pelado y procesado en pequeñas cantidades.",
+   "blw": "Bastones pelados, con un poco de cáscara para agarrar."
+  },
+  "seguridad": "Crudo y duro: pelalo y cortalo en bastones grandes; supervisá.",
+  "tip": "Útil para el calor y la dentición.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "lentejas",
+  "nombre": "Lentejas",
+  "emoji": "🫘",
+  "grupo": "legumbres",
+  "nutrientes": [
+   "hierro",
+   "proteina",
+   "fibra",
+   "zinc"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervidas, procesadas con verduras.",
+   "blw": "Aplastadas o en hamburguesitas y tortillitas."
+  },
+  "seguridad": "Siempre bien cocidas y aplastadas; remojá la noche anterior.",
+  "tip": "Con vitamina C (naranja, tomate) mejora la absorción del hierro.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "garbanzos",
+  "nombre": "Garbanzos",
+  "emoji": "🫘",
+  "grupo": "legumbres",
+  "nutrientes": [
+   "hierro",
+   "proteina",
+   "fibra"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervidos, pelados y procesados (hummus sin sal).",
+   "blw": "Hummus untado en tostada o albóndigas blandas."
+  },
+  "seguridad": "Garbanzos enteros no: aplastalos o procesalos.",
+  "tip": "Pelalos si molestan al digerirlos.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "porotos",
+  "nombre": "Porotos",
+  "emoji": "🫘",
+  "grupo": "legumbres",
+  "nutrientes": [
+   "hierro",
+   "proteina",
+   "fibra"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervidos y procesados.",
+   "blw": "Aplastados o en hamburguesas."
+  },
+  "seguridad": "Bien cocidos y aplastados; no crudos.",
+  "tip": "Remojarlos reduce los gases.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "soja",
+  "nombre": "Soja / tofu",
+  "emoji": "🫘",
+  "grupo": "legumbres",
+  "nutrientes": [
+   "hierro",
+   "proteina",
+   "calcio"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": "soja",
+  "comoOfrecer": {
+   "pure": "Tofu firme pisado o poroto de soja cocido procesado.",
+   "blw": "Tofu firme en bastones o salteado."
+  },
+  "seguridad": "Elegí tofu sin sal ni condimentos; no cruda.",
+  "tip": "Opción vegetal con proteína y calcio.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "arroz",
+  "nombre": "Arroz",
+  "emoji": "🍚",
+  "grupo": "cereales",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido blando, procesado con caldo o verduras; sin sal.",
+   "blw": "Bolitas pegajosas de arroz bien cocido (desde los 6 meses) o mezclado en salsas."
+  },
+  "seguridad": "El arroz cocido tiene bajo riesgo de atragantamiento, pero los pastelitos de arroz densos y pegajosos (tipo mochi) sí son peligrosos. Puede disparar FPIES (vómitos 1-4 h después de comerlo), poco frecuente.",
+  "tip": "Por el arsénico, el arroz blanco tiene menos que el integral; no lo uses como único cereal: alterná con avena, quinoa, cebada o amaranto.",
+  "fuente": "https://solidstarts.com/foods/rice/"
+ },
+ {
+  "id": "avena",
+  "nombre": "Avena",
+  "emoji": "🌾",
+  "grupo": "cereales",
+  "nutrientes": [
+   "hierro",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida en agua o leche de fórmula/materna hasta cremosa.",
+   "blw": "Panqueques o galletas blandas de avena y banana."
+  },
+  "seguridad": "Cocida y cremosa; evitá copos secos.",
+  "tip": "Sin gluten si hay celiaquía: elegí con sello.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "polenta",
+  "nombre": "Polenta",
+  "emoji": "🌽",
+  "grupo": "cereales",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida bien cremosa, sin sal.",
+   "blw": "Bastones de polenta fría y firme."
+  },
+  "seguridad": "Sin sal ni queso duro; cremosa o firme y fría.",
+  "tip": "Muy argentina y económica.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "quinoa",
+  "nombre": "Quinoa",
+  "emoji": "🌾",
+  "grupo": "cereales",
+  "nutrientes": [
+   "hierro",
+   "proteina",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Bien lavada y cocida, procesada.",
+   "blw": "Mini tortillitas o bolitas."
+  },
+  "seguridad": "Lavala para sacar la saponina.",
+  "tip": "Buena proteína vegetal.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "fideos",
+  "nombre": "Fideos",
+  "emoji": "🍝",
+  "grupo": "cereales",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": "trigo",
+  "comoOfrecer": {
+   "pure": "Fideos chiquitos bien cocidos.",
+   "blw": "Fusilli, tirabuzón o tubitos blandos con salsa."
+  },
+  "seguridad": "Cocidos bien blandos y sin sal.",
+  "tip": "Introduce trigo y gluten.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "pan",
+  "nombre": "Pan / tostada",
+  "emoji": "🍞",
+  "grupo": "cereales",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": "trigo",
+  "comoOfrecer": {
+   "pure": "Poco usado en puré.",
+   "blw": "Tostada en tiras con palta o ricota."
+  },
+  "seguridad": "Nunca pan fresco blando en bolas: se pega al paladar. Siempre tostado.",
+  "tip": "Elegí uno sin exceso de sal.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "cebada",
+  "nombre": "Cebada",
+  "emoji": "🌾",
+  "grupo": "cereales",
+  "nutrientes": [
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida como papilla o porridge, sola o con fruta o verduras.",
+   "blw": "Papilla espesa para cuchara; también tostadas en tiras si es pan de cebada."
+  },
+  "seguridad": "Contiene gluten: no apta si hay celiaquía. El grano entero cocido puede ser riesgo de aspiración: dejá que coma solo y supervisá.",
+  "tip": "Aporta fibra y betaglucanos; alternativa al arroz.",
+  "fuente": "https://solidstarts.com/foods/barley/"
+ },
+ {
+  "id": "mijo",
+  "nombre": "Mijo",
+  "emoji": "🌾",
+  "grupo": "cereales",
+  "nutrientes": [
+   "fibra",
+   "proteina",
+   "calcio",
+   "zinc"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocido cremoso como porridge o mezclado en puré de verduras.",
+   "blw": "Mezclado en purés espesos, tortillitas o hamburguesas para que los granos se peguen."
+  },
+  "seguridad": "Los granos sueltos se desparraman en la boca y dan arcadas: pisalos o ligá con salsa.",
+  "tip": "Sin gluten y no alergénico.",
+  "fuente": "https://solidstarts.com/foods/millet/"
+ },
+ {
+  "id": "amaranto",
+  "nombre": "Amaranto",
+  "emoji": "🌾",
+  "grupo": "cereales",
+  "nutrientes": [
+   "hierro",
+   "fibra"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocido cremoso.",
+   "blw": "Mezclado en tortillas."
+  },
+  "seguridad": "Bien cocido.",
+  "tip": "Aporta hierro y calcio.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "carne-vaca",
+  "nombre": "Carne vacuna",
+  "emoji": "🥩",
+  "grupo": "carnes",
+  "nutrientes": [
+   "hierro",
+   "zinc",
+   "proteina"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Cocida y procesada o desmenuzada con caldo.",
+   "blw": "Tiras anchas o albóndigas blandas y jugosas."
+  },
+  "seguridad": "Sin cocción excesiva ni trocitos duros. Bien cocida.",
+  "tip": "La mejor fuente de hierro hemo; ofrecela a diario.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "higado",
+  "nombre": "Hígado",
+  "emoji": "🥩",
+  "grupo": "carnes",
+  "nutrientes": [
+   "hierro",
+   "vitaminaA",
+   "zinc",
+   "proteina"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hígado de pollo bien cocido, hecho puré liso; 1-2 cucharadas por vez.",
+   "blw": "Paté liso untado en tiras de tostada; sin cubitos ni trozos."
+  },
+  "seguridad": "Muy alto en vitamina A, que en exceso es tóxica: no más de 1-2 cucharadas una vez por semana. Firme y difícil de masticar: servilo como puré o paté, no en cubitos; no lo cocines de más.",
+  "tip": "Fuente concentrada de hierro, zinc y vitaminas B; con una vez por semana alcanza.",
+  "fuente": "https://solidstarts.com/foods/chicken-liver/"
+ },
+ {
+  "id": "pollo",
+  "nombre": "Pollo",
+  "emoji": "🍗",
+  "grupo": "carnes",
+  "nutrientes": [
+   "proteina",
+   "zinc"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido y procesado con caldo.",
+   "blw": "Tiras anchas de pata o muslo cocidos blandos."
+  },
+  "seguridad": "Sin piel ni huesos.",
+  "tip": "El muslo tiene más hierro que la pechuga.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "cerdo",
+  "nombre": "Cerdo",
+  "emoji": "🥩",
+  "grupo": "carnes",
+  "nutrientes": [
+   "proteina",
+   "zinc"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido y procesado.",
+   "blw": "Tiras de lomo blando."
+  },
+  "seguridad": "Bien cocido; sin grasa dura.",
+  "tip": "Alta en vitamina B.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "cordero",
+  "nombre": "Cordero",
+  "emoji": "🥩",
+  "grupo": "carnes",
+  "nutrientes": [
+   "hierro",
+   "zinc"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido y procesado.",
+   "blw": "Tiras blandas bien cocidas."
+  },
+  "seguridad": "Sin hueso.",
+  "tip": "Sabor más fuerte; combiná con verduras.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "pavo",
+  "nombre": "Pavo",
+  "emoji": "🍗",
+  "grupo": "carnes",
+  "nutrientes": [
+   "proteina"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido y procesado.",
+   "blw": "Tiras de muslo cocido."
+  },
+  "seguridad": "Sin piel.",
+  "tip": "Magro y suave.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "conejo",
+  "nombre": "Conejo",
+  "emoji": "🥩",
+  "grupo": "carnes",
+  "nutrientes": [
+   "proteina"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hervido y procesado.",
+   "blw": "Trozos blandos desmenuzados."
+  },
+  "seguridad": "Cuidá los huesitos pequeños.",
+  "tip": "Carne magra.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "pescado-blanco",
+  "nombre": "Pescado blanco",
+  "emoji": "🐟",
+  "grupo": "pescados",
+  "nutrientes": [
+   "proteina",
+   "calcio",
+   "omega3"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "pescado",
+  "comoOfrecer": {
+   "pure": "Cocido y desmenuzado, sin espinas.",
+   "blw": "Filet cocido en trozos blandos o hamburguesas."
+  },
+  "seguridad": "Revisá bien las espinas; no ofrezcas pescados con mucho mercurio. Evitá tiburón, pez espada y marlín por el mercurio (NHS).",
+  "tip": "Merluza, lenguado o abadejo son opciones seguras y económicas.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "merluza",
+  "nombre": "Merluza",
+  "emoji": "🐟",
+  "grupo": "pescados",
+  "nutrientes": [
+   "proteina",
+   "calcio",
+   "omega3"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "pescado",
+  "comoOfrecer": {
+   "pure": "Hervida y desmenuzada con verduras.",
+   "blw": "Hamburguesas o bastones al horno, sin rebozar."
+  },
+  "seguridad": "Controlá las espinas con cuidado. Evitá tiburón, pez espada y marlín por el mercurio (NHS).",
+  "tip": "Pescado local, de bajo mercurio.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "salmon",
+  "nombre": "Salmón",
+  "emoji": "🐟",
+  "grupo": "pescados",
+  "nutrientes": [
+   "omega3",
+   "calcio",
+   "zinc"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "pescado",
+  "comoOfrecer": {
+   "pure": "Cocido y desmenuzado con papa.",
+   "blw": "Hamburguesas o bastones al horno."
+  },
+  "seguridad": "Sin espinas; salmón cocido, nunca crudo ni ahumado. Evitá tiburón, pez espada y marlín por el mercurio (NHS).",
+  "tip": "Rico en omega 3; 1-2 veces por semana.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "sardinas",
+  "nombre": "Sardinas",
+  "emoji": "🐟",
+  "grupo": "pescados",
+  "nutrientes": [
+   "omega3",
+   "calcio",
+   "proteina"
+  ],
+  "ricoEnHierro": true,
+  "alergeno": "pescado",
+  "comoOfrecer": {
+   "pure": "Pisadas o procesadas.",
+   "blw": "En tostadas, sin espinas grandes."
+  },
+  "seguridad": "Si es enlatada, elegí al natural y sin sal. Evitá tiburón, pez espada y marlín por el mercurio (NHS).",
+  "tip": "Pescado chico y bajo en mercurio.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "atun",
+  "nombre": "Atún",
+  "emoji": "🐟",
+  "grupo": "pescados",
+  "nutrientes": [
+   "proteina",
+   "zinc"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "pescado",
+  "comoOfrecer": {
+   "pure": "Atún enlatado \"light\"/skipjack al natural, escurrido y pisado dentro de una papilla.",
+   "blw": "Desmenuzado en tortillitas o bolitas blandas (desde los 9 meses en trocitos con pinza)."
+  },
+  "seguridad": "Elegí atún light/skipjack, que tiene menos mercurio que el blanco, el yellowfin o el ojo grande; una o dos veces por semana. El enlatado tiene poco riesgo de atragantamiento (las espinas se ablandan); elegí al natural y bajo en sal.",
+  "tip": "Evitá siempre tiburón (cazón, en algunos lugares), pez espada y marlín por su mercurio (NHS).",
+  "fuente": "https://solidstarts.com/foods/tuna/"
+ },
+ {
+  "id": "camaron",
+  "nombre": "Camarón",
+  "emoji": "🦐",
+  "grupo": "pescados",
+  "nutrientes": [
+   "proteina"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "mariscos",
+  "comoOfrecer": {
+   "pure": "Cocido y procesado.",
+   "blw": "Trocitos bien picados."
+  },
+  "seguridad": "Es alérgeno frecuente; siempre bien cocido y picado.",
+  "tip": "Introducilo según el esquema de alérgenos.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "huevo",
+  "nombre": "Huevo",
+  "emoji": "🥚",
+  "grupo": "huevo",
+  "nutrientes": [
+   "proteina",
+   "zinc",
+   "hierro"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "huevo",
+  "comoOfrecer": {
+   "pure": "Huevo duro (15 min de hervor) pisado con agua, leche materna o fórmula, empezando con 1/4 de cucharadita.",
+   "blw": "Omelette o tortilla bien cocida en tiras; huevo duro pisado en tostada."
+  },
+  "seguridad": "Siempre bien cocido (clara y yema, 71 °C): nada de huevo crudo, poco cocido o mayonesa casera. Ofrecé clara y yema juntas.",
+  "tip": "Una vez que lo toleró, repetilo unas 2 veces por semana para mantener la tolerancia.",
+  "fuente": "https://solidstarts.com/foods/egg/"
+ },
+ {
+  "id": "yogur",
+  "nombre": "Yogur natural",
+  "emoji": "🥛",
+  "grupo": "lacteos",
+  "nutrientes": [
+   "calcio",
+   "proteina"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "leche",
+  "comoOfrecer": {
+   "pure": "Natural sin azúcar, solo o con fruta.",
+   "blw": "Para que lo exploren con cuchara o untado en tostada."
+  },
+  "seguridad": "Sin azúcar ni saborizantes.",
+  "tip": "Natural y entero.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "queso",
+  "nombre": "Queso fresco",
+  "emoji": "🧀",
+  "grupo": "lacteos",
+  "nutrientes": [
+   "calcio",
+   "proteina"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "leche",
+  "comoOfrecer": {
+   "pure": "Ricota pisada o queso cremoso untable.",
+   "blw": "Tiras finas de queso blando o mozzarella derretida."
+  },
+  "seguridad": "Siempre pasteurizado; elegí con poca sal. Evitá quesos duros en cubitos.",
+  "tip": "La ricota es de bajo sodio.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "ricota",
+  "nombre": "Ricota",
+  "emoji": "🧀",
+  "grupo": "lacteos",
+  "nutrientes": [
+   "calcio",
+   "proteina"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "leche",
+  "comoOfrecer": {
+   "pure": "Mezclada con puré o fruta.",
+   "blw": "Untada en tostada o en tortitas."
+  },
+  "seguridad": "Elegí ricota fresca, pasteurizada.",
+  "tip": "Baja en sal.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "leche-vaca",
+  "nombre": "Leche de vaca",
+  "emoji": "🥛",
+  "grupo": "lacteos",
+  "nutrientes": [
+   "calcio"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "leche",
+  "comoOfrecer": {
+   "pure": "Solo mezclada en preparaciones.",
+   "blw": "En panqueques o papillas."
+  },
+  "seguridad": "No reemplaza la leche materna/fórmula como bebida antes de 1 año.",
+  "tip": "Usala solo cocinando.",
+  "fuente": "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf"
+ },
+ {
+  "id": "manteca",
+  "nombre": "Manteca",
+  "emoji": "🧈",
+  "grupo": "grasas",
+  "nutrientes": [
+   "grasas"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "leche",
+  "comoOfrecer": {
+   "pure": "Una pizca en la papilla.",
+   "blw": "En tostadas."
+  },
+  "seguridad": "En pequeñas cantidades.",
+  "tip": "Contiene leche.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "aceite-oliva",
+  "nombre": "Aceite de oliva",
+  "emoji": "🫒",
+  "grupo": "grasas",
+  "nutrientes": [
+   "grasas"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Una cucharadita sobre la papilla ya hecha.",
+   "blw": "En vegetales al horno."
+  },
+  "seguridad": "Sin excesos.",
+  "tip": "Aumenta las calorías y la absorción de vitaminas.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "mani",
+  "nombre": "Maní",
+  "emoji": "🥜",
+  "grupo": "grasas",
+  "nutrientes": [
+   "proteina",
+   "grasas"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "mani",
+  "comoOfrecer": {
+   "pure": "1/4 de cucharadita de crema de maní lisa (sin miel ni sal) diluida con agua, leche materna o fórmula; aumentá de a poco.",
+   "blw": "Capa finita sobre tostada, mezclada con avena o yogur, o maní molido sobre fruta pisada."
+  },
+  "seguridad": "El maní entero, en trozos y la crema de maní espesa en cuchara son riesgo de atragantamiento: siempre diluida o en capa fina.",
+  "tip": "Una vez tolerado, ofrecelo unas 2 veces por semana para prevenir alergia.",
+  "fuente": "https://solidstarts.com/foods/peanut/"
+ },
+ {
+  "id": "nueces",
+  "nombre": "Nueces",
+  "emoji": "🌰",
+  "grupo": "grasas",
+  "nutrientes": [
+   "grasas",
+   "omega3"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "frutos_secos",
+  "comoOfrecer": {
+   "pure": "Molidas muy finas mezcladas con papillas.",
+   "blw": "Harina o polvo de nuez en yogur o avena."
+  },
+  "seguridad": "Nunca enteras ni en trozos: las nueces enteras son riesgo de atragantamiento hasta los 5 años; molidas muy finas o en pasta están bien desde los 6 meses (NHS).",
+  "tip": "Fuente de omega 3.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "almendras",
+  "nombre": "Almendras",
+  "emoji": "🌰",
+  "grupo": "grasas",
+  "nutrientes": [
+   "grasas",
+   "calcio"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "frutos_secos",
+  "comoOfrecer": {
+   "pure": "Harina de almendras o crema diluida.",
+   "blw": "En panqueques."
+  },
+  "seguridad": "Nunca enteras ni en trozos (riesgo hasta los 5 años); molidas o en crema fina desde los 6 meses.",
+  "tip": "Aportan calcio y grasas buenas.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "castanas",
+  "nombre": "Castañas de cajú",
+  "emoji": "🌰",
+  "grupo": "grasas",
+  "nutrientes": [
+   "grasas",
+   "zinc"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "frutos_secos",
+  "comoOfrecer": {
+   "pure": "Pasta suave diluida.",
+   "blw": "En yogur."
+  },
+  "seguridad": "Nunca enteras ni en trozos; molidas o en pasta fina desde los 6 meses.",
+  "tip": "Frutos secos molidos.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "sesamo",
+  "nombre": "Sésamo / tahini",
+  "emoji": "🥣",
+  "grupo": "grasas",
+  "nutrientes": [
+   "calcio",
+   "grasas",
+   "hierro"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": "sesamo",
+  "comoOfrecer": {
+   "pure": "Una cucharadita de tahini en la papilla.",
+   "blw": "Tahini sobre tostada."
+  },
+  "seguridad": "Semillas enteras no: molelas o usá pasta.",
+  "tip": "El tahini es rico en calcio.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "semillas-chia",
+  "nombre": "Chía",
+  "emoji": "🌱",
+  "grupo": "grasas",
+  "nutrientes": [
+   "fibra",
+   "omega3"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hidratadas en gel, mezcladas con yogur o fruta.",
+   "blw": "En budín de chía."
+  },
+  "seguridad": "Siempre hidratadas; secas pueden hincharse en la garganta.",
+  "tip": "Fuente de omega 3 vegetal.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "lino",
+  "nombre": "Lino",
+  "emoji": "🌱",
+  "grupo": "grasas",
+  "nutrientes": [
+   "fibra",
+   "omega3"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Molidas y mezcladas.",
+   "blw": "Espolvoreadas en tortitas."
+  },
+  "seguridad": "Molidas, nunca enteras.",
+  "tip": "Ayuda a combatir la constipación.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "zapallo-semillas",
+  "nombre": "Semillas de zapallo",
+  "emoji": "🌱",
+  "grupo": "grasas",
+  "nutrientes": [
+   "zinc",
+   "hierro"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Molidas finas en la papilla.",
+   "blw": "Espolvoreadas."
+  },
+  "seguridad": "Siempre molidas.",
+  "tip": "Muy buenas fuentes de zinc.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "coco",
+  "nombre": "Coco rallado",
+  "emoji": "🥥",
+  "grupo": "grasas",
+  "nutrientes": [
+   "grasas"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Coco rallado fino mezclado en cereales calientes o avena.",
+   "blw": "Para rebozar frutas resbalosas (palta, banana, mango)."
+  },
+  "seguridad": "Usá coco rallado fino: las láminas grandes son filosas y difíciles de manejar. Algunos tienen sulfitos como conservante; mirá la etiqueta.",
+  "tip": "La alergia al coco es rara y no suele cruzarse con maní o frutos secos.",
+  "fuente": "https://solidstarts.com/foods/coconut/"
+ },
+ {
+  "id": "perejil",
+  "nombre": "Perejil",
+  "emoji": "🌿",
+  "grupo": "otros",
+  "nutrientes": [
+   "vitaminaC"
+  ],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hojas lavadas y picadas muy finas en purés y tortillas.",
+   "blw": "Dentro de tortillitas o hamburguesas."
+  },
+  "seguridad": "Picalo fino; las hojas enteras se pegan en la boca.",
+  "tip": "Realza el sabor sin sal.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "albahaca",
+  "nombre": "Albahaca",
+  "emoji": "🌿",
+  "grupo": "otros",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Hojas picadas finas en salsa de tomate o puré.",
+   "blw": "En tortillitas o salsas para fideos."
+  },
+  "seguridad": "Picala fina; no la ofrezcas en hojas enteras.",
+  "tip": "Aromatiza salsas de tomate sin sal.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "oregano",
+  "nombre": "Orégano",
+  "emoji": "🌿",
+  "grupo": "otros",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Una pizca en purés de legumbres o papillas de carne.",
+   "blw": "Espolvoreado sobre verduras asadas o hamburguesas."
+  },
+  "seguridad": "Poquito y sin sal añadida.",
+  "tip": "Realza legumbres y salsas.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "canela",
+  "nombre": "Canela",
+  "emoji": "🌿",
+  "grupo": "otros",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Una pizca en manzana cocida, avena o banana.",
+   "blw": "Sobre panqueques o fruta asada."
+  },
+  "seguridad": "Mínima cantidad y mezclada: el polvo suelto puede irritar y dar tos si lo inhala.",
+  "tip": "Endulza naturalmente sin azúcar añadida.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "comino",
+  "nombre": "Comino",
+  "emoji": "🌿",
+  "grupo": "otros",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Una pizca en puré de lentejas o garbanzos.",
+   "blw": "En hamburguesas de legumbres."
+  },
+  "seguridad": "Muy poca cantidad.",
+  "tip": "Es un clásico para dar gusto a las legumbres.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "ajo",
+  "nombre": "Ajo",
+  "emoji": "🧄",
+  "grupo": "otros",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Un toque de ajo bien cocido (rehogado) en la papilla.",
+   "blw": "En guisos o tortillas, cocido."
+  },
+  "seguridad": "Poquito y siempre cocido; no lo ofrezcas crudo.",
+  "tip": "Da sabor a guisos y carnes sin sal.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ },
+ {
+  "id": "caldo-hueso",
+  "nombre": "Caldo casero",
+  "emoji": "🍲",
+  "grupo": "otros",
+  "nutrientes": [],
+  "ricoEnHierro": false,
+  "alergeno": null,
+  "comoOfrecer": {
+   "pure": "Caldo de verduras o carne hecho en casa, sin sal, para cocinar papillas.",
+   "blw": "Para cocinar arroz, legumbres o fideos y darles sabor."
+  },
+  "seguridad": "Nunca cubitos ni caldos de sobre: tienen mucha sal. Colalo bien y sin huesos pequeños.",
+  "tip": "Da sabor sin sal; usalo para hidratar purés espesos.",
+  "fuente": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+ }
+]

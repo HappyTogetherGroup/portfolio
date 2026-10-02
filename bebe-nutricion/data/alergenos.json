@@ -1,0 +1,130 @@
+{
+ "intro": "Según AAP no hay evidencia de que esperar más allá de los 4-6 meses para introducir alimentos como huevo, lácteos, soja, maní o pescado prevenga la alergia. Introducí un alérgeno nuevo por vez, en horario diurno y con el bebé sano, en forma segura (nunca maní entero ni huevo crudo), empezando con cantidades muy chicas, y una vez tolerado mantenelo en la dieta de forma regular. Si tiene eccema severo o ya reaccionó a algún alimento, consultá al pediatra o alergista antes de empezar.",
+ "alergenos": [
+  {
+   "id": "huevo",
+   "nombre": "Huevo",
+   "emoji": "🥚",
+   "porQue": "Es una de las alergias más frecuentes en bebés; introducirlo temprano y cocido se asocia con menor riesgo.",
+   "comoIntroducir": "Huevo duro (15 min de hervor) o tortilla bien cocida, clara y yema juntas, mezclado con agua, leche materna o fórmula. Empezá con 1/4 de cucharadita y aumentá de a poco si no hay síntomas. Cocinalo a 71 °C o más; nunca crudo ni poco cocido.",
+   "frecuencia": "Unas 2 veces por semana, una vez que lo toleró.",
+   "señales": "Leves: urticaria, enrojecimiento alrededor de la boca, vómitos leves. Urgencias: hinchazón de labios o cara, dificultad para respirar, tos persistente, decaimiento o vómitos repetidos.",
+   "alimentoEjemplo": [
+    "huevo"
+   ]
+  },
+  {
+   "id": "mani",
+   "nombre": "Maní",
+   "emoji": "🥜",
+   "porQue": "La introducción temprana reduce el riesgo de alergia al maní, sobre todo en bebés con eccema.",
+   "comoIntroducir": "Crema de maní lisa sin miel ni sal, diluida con agua, leche materna o fórmula, o harina de maní mezclada. Empezá con 1/4 de cucharadita y aumentá de a poco si no hay síntomas. También sirve en capa fina sobre tostada o mezclada con avena o yogur. Nunca maní entero ni crema espesa en cuchara.",
+   "frecuencia": "Unas 2 veces por semana, una vez que lo toleró.",
+   "señales": "Leves: urticaria, picazón, enrojecimiento. Urgencias: dificultad para respirar, hinchazón de cara o garganta, vómitos repetidos, palidez, decaimiento.",
+   "alimentoEjemplo": [
+    "mani"
+   ]
+  },
+  {
+   "id": "leche",
+   "nombre": "Leche de vaca",
+   "emoji": "🥛",
+   "porQue": "Es una de las primeras alergias. La proteína de la leche puede aparecer con yogur o queso.",
+   "comoIntroducir": "Empezá con yogur natural o ricota: una cucharadita y aumentá en los días siguientes. La leche como bebida no se da antes del año.",
+   "frecuencia": "Varias veces por semana.",
+   "señales": "Leves: vómitos, sangre o moco en la caca, eccema. Urgencias: urticaria generalizada, dificultad para respirar.",
+   "alimentoEjemplo": [
+    "yogur",
+    "ricota",
+    "queso"
+   ]
+  },
+  {
+   "id": "trigo",
+   "nombre": "Trigo / gluten",
+   "emoji": "🌾",
+   "porQue": "Se introduce desde los 6 meses; no existe evidencia de que retrasarlo reduzca la celiaquía.",
+   "comoIntroducir": "Pan tostado, fideos o avena (con gluten) en cantidades pequeñas. Empezá con 1-2 cucharaditas y aumentá.",
+   "frecuencia": "Varias veces por semana.",
+   "señales": "Leves: urticaria, vómitos. Urgencias: dificultad para respirar o hinchazón.",
+   "alimentoEjemplo": [
+    "pan",
+    "fideos"
+   ]
+  },
+  {
+   "id": "frutos_secos",
+   "nombre": "Frutos secos",
+   "emoji": "🌰",
+   "porQue": "Nueces, almendras y castañas pueden causar reacciones graves.",
+   "comoIntroducir": "Ofrecelos siempre molidos o en pasta fina, mezclados con yogur o avena. Una pizca al inicio.",
+   "frecuencia": "Algunas veces por semana.",
+   "señales": "Leves: picazón, urticaria. Urgencias: dificultad para respirar, hinchazón de labios o lengua.",
+   "alimentoEjemplo": [
+    "nueces",
+    "almendras",
+    "castanas"
+   ]
+  },
+  {
+   "id": "soja",
+   "nombre": "Soja",
+   "emoji": "🫘",
+   "porQue": "Frecuente en alergias infantiles tempranas, a veces junto con la leche.",
+   "comoIntroducir": "Tofu firme bien cocido en pequeñas cantidades, desde 1 cucharadita.",
+   "frecuencia": "1-2 veces por semana.",
+   "señales": "Leves: vómitos, urticaria. Urgencias: dificultad para respirar.",
+   "alimentoEjemplo": [
+    "soja"
+   ]
+  },
+  {
+   "id": "pescado",
+   "nombre": "Pescado",
+   "emoji": "🐟",
+   "porQue": "Introducirlo temprano se asocia con menor riesgo de eccema y alergias.",
+   "comoIntroducir": "Pescado blanco bien cocido, sin espinas y desmenuzado. Empezá con 1 cucharadita y aumentá.",
+   "frecuencia": "Una a dos veces por semana.",
+   "señales": "Leves: urticaria, vómitos. Urgencias: dificultad para respirar, hinchazón.",
+   "alimentoEjemplo": [
+    "pescado-blanco",
+    "merluza",
+    "salmon"
+   ]
+  },
+  {
+   "id": "mariscos",
+   "nombre": "Mariscos",
+   "emoji": "🦐",
+   "porQue": "Pueden causar reacciones graves en niños pequeños.",
+   "comoIntroducir": "Bien cocidos y picados. Empezá con un trocito mínimo.",
+   "frecuencia": "Ocasionalmente.",
+   "señales": "Leves: urticaria, dolor abdominal. Urgencias: dificultad para respirar, hinchazón.",
+   "alimentoEjemplo": [
+    "camaron"
+   ]
+  },
+  {
+   "id": "sesamo",
+   "nombre": "Sésamo",
+   "emoji": "🌱",
+   "porQue": "Es un alérgeno cada vez más frecuente.",
+   "comoIntroducir": "Una cucharadita de pasta de tahini en la papilla.",
+   "frecuencia": "Algunas veces por semana.",
+   "señales": "Leves: urticaria. Urgencias: dificultad para respirar, vómitos repetidos.",
+   "alimentoEjemplo": [
+    "sesamo"
+   ]
+  }
+ ],
+ "fuentes": [
+  "https://www.healthychildren.org/English/ages-stages/baby/feeding-nutrition/Pages/Starting-Solid-Foods.aspx",
+  "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/",
+  "https://solidstarts.com/foods/peanut/",
+  "https://solidstarts.com/foods/egg/",
+  "https://solidstarts.com/foods/tuna/",
+  "https://msptucuman.gov.ar/wordpress/wp-content/uploads/2019/07/D%c3%adptico-Alimentaci%c3%b3n-complementaria.pdf",
+  "https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding",
+  "https://www.nhs.uk/start-for-life/baby/weaning/"
+ ]
+}
