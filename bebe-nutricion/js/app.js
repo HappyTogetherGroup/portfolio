@@ -1,4 +1,5 @@
 import * as store from './store.js';
+import * as cloud from './cloud.js';
 import {
   advise, suggestFoods, activePlan, allowedByPlan, ageOf, stageOf, foodStats, flatItems, streak, weekDays, startOfDay, DAY,
   UNITS, unitLabel, qtyText, MEALS, MEAL_NAMES, GROUPS, WEEKLY_GROUPS,
@@ -10,7 +11,7 @@ const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 const data = { foods: [], allergens: { intro: '', alergenos: [] }, tips: [], fuentes: { fuentes: [], progresionPorEtapa: [], cantidadesReferencia: {} } };
 let foodsById = {};
-const ui = { tipLimit: 8, tab: 'hoy', tipCat: 'todos', foodGroup: 'todos', dismissed: new Set() };
+const ui = { auth: 'in', local: false, tipLimit: 8, tab: 'hoy', tipCat: 'todos', foodGroup: 'todos', dismissed: new Set() };
 
 const ICON = {
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
@@ -32,6 +33,7 @@ async function boot() {
   data.foods = foods; data.allergens = allergens; data.tips = tips; data.fuentes = fuentes;
   foodsById = Object.fromEntries(foods.map((f) => [f.id, f]));
   render();
+  startCloud();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
@@ -56,20 +58,33 @@ function tabbar() {
 }
 
 // ---------- Bienvenida / perfil ----------
+function authForm(mode, extra = '') {
+  const up = mode === 'up';
+  return `<form class="col" data-form="${up ? 'auth-up' : 'auth-in'}" ${extra}>
+    ${up ? '<label class="field"><span class="label">Tu nombre</span><input class="input" name="name" autocomplete="given-name" autocapitalize="words" maxlength="40" placeholder="Cómo te ven en el hogar" required></label>' : ''}
+    <label class="field"><span class="label">Email</span><input class="input" type="email" name="email" autocomplete="email" inputmode="email" placeholder="tu@email.com" required></label>
+    <label class="field"><span class="label">Contraseña${up ? ' (mínimo 8 caracteres)' : ''}</span><input class="input" type="password" name="password" autocomplete="${up ? 'new-password' : 'current-password'}" minlength="${up ? 8 : 1}" required></label>
+    <p class="small" data-error style="color:var(--danger);min-height:1.2em"></p>
+    <button class="btn primary block" type="submit">${up ? 'Crear cuenta' : 'Entrar'}</button></form>`;
+}
+
 function welcomeView() {
-  const us = store.users();
+  const us = store.users().filter((u) => !u.cloud);
   return `<div class="welcome shell stagger">
     <div style="--i:0"><span class="hero" aria-hidden="true">🥄</span></div>
     <h1 class="display h1" style="--i:1;font-size:40px">Primeras<br>Cucharadas</h1>
-    <p class="muted" style="--i:2;margin:12px 0 26px;font-size:17px">Anotá lo que come tu bebé, mordisco a mordisco, y recibí consejos para seguir.</p>
-    ${us.length ? `<div class="col" style="--i:3;margin-bottom:22px"><span class="label">Volver a entrar</span>
-      ${us.map((u) => `<button class="user-pill" data-act="signin" data-name="${esc(u.name)}"><span class="avatar">${esc(u.name[0].toUpperCase())}</span><span class="grow"><b>${esc(u.name)}</b><br><span class="small muted">${u.baby ? esc(u.baby.name) : 'Sin bebé cargado'}</span></span></button>`).join('')}</div>` : ''}
-    <form class="col" data-form="signin" style="--i:4">
-      <label class="field"><span class="label">${us.length ? 'O entrá con otro nombre' : '¿Cómo te llamás?'}</span>
-        <input class="input" name="name" autocomplete="given-name" autocapitalize="words" placeholder="Tu nombre" maxlength="40" required></label>
-      <button class="btn primary block" type="submit">Entrar</button>
-      <p class="small muted" style="text-align:center">Sin contraseña. Todo queda guardado solo en este celular.</p>
-    </form></div>`;
+    <p class="muted" style="--i:2;margin:12px 0 22px;font-size:17px">Anotá lo que come tu bebé, mordisco a mordisco, y recibí consejos para seguir.</p>
+    <div style="--i:3" class="col">
+      <div class="seg" role="tablist"><button data-act="auth-mode" data-id="in" aria-pressed="${ui.auth === 'in'}">Entrar</button><button data-act="auth-mode" data-id="up" aria-pressed="${ui.auth === 'up'}">Crear cuenta</button></div>
+      ${authForm(ui.auth)}
+      <p class="small muted" style="text-align:center">Con cuenta, los datos se comparten entre celulares (por ejemplo con la mamá o el papá).</p>
+    </div>
+    <div style="--i:4;margin-top:22px" class="col">
+      <button class="btn ghost block" data-act="local-mode">${ui.local ? 'Ocultar' : 'Usar sin cuenta, solo en este celular'}</button>
+      ${ui.local ? `${us.map((u) => `<button class="user-pill" data-act="signin" data-name="${esc(u.name)}"><span class="avatar">${esc(u.name[0].toUpperCase())}</span><span class="grow"><b>${esc(u.name)}</b><br><span class="small muted">${u.baby ? esc(u.baby.name) : 'Sin bebé cargado'}</span></span></button>`).join('')}
+        <form class="col" data-form="signin"><label class="field"><span class="label">Tu nombre</span><input class="input" name="name" autocomplete="given-name" autocapitalize="words" placeholder="Tu nombre" maxlength="40" required></label>
+        <button class="btn primary block" type="submit">Entrar sin contraseña</button><p class="small muted" style="text-align:center">Todo queda guardado solo en este celular.</p></form>` : ''}
+    </div></div>`;
 }
 
 function babyView(u) {
@@ -81,8 +96,10 @@ function babyView(u) {
       <label class="field"><span class="label">Nombre del bebé</span><input class="input" name="baby" placeholder="Nombre" maxlength="40" required></label>
       <label class="field"><span class="label">Fecha de nacimiento</span><input class="input" type="date" name="birth" value="${sixMonthsAgo}" max="${new Date().toISOString().slice(0, 10)}" required></label>
       <button class="btn primary block" type="submit">Empezar</button>
-      <button class="btn ghost block" type="button" data-act="signout">Cambiar de usuario</button>
-    </form></div>`;
+      <button class="btn ghost block" type="button" data-act="signout">${u.cloud ? 'Cerrar sesión' : 'Cambiar de usuario'}</button>
+    </form>
+    ${u.cloud ? `<div class="card soft" style="--i:3;margin-top:22px"><b>¿Ya tienen un hogar?</b><p class="small muted" style="margin:4px 0 12px">Si la mamá o el papá ya cargaron al bebé, pedile el código de invitación.</p>
+      <form class="col" data-form="join"><input class="input" name="code" placeholder="Código de invitación" autocapitalize="characters" autocomplete="off" maxlength="12" required><p class="small" data-error style="color:var(--danger);min-height:1.2em"></p><button class="btn primary block" type="submit">Unirme</button></form></div>` : ''}</div>`;
 }
 
 // ---------- Hoy ----------
@@ -192,9 +209,15 @@ function tipsView(u) {
 function profileView(u) {
   const first = u.entries.length ? new Date(Math.min(...u.entries.map((e) => e.ts))).toLocaleDateString('es-AR') : '—';
   return `<div class="stagger">
-    <header class="topbar" style="--i:0"><div><p class="eyebrow">Cuenta local</p><h1 class="display h1">${esc(u.name)}</h1></div><span class="avatar" style="width:52px;height:52px">${esc(u.name[0].toUpperCase())}</span></header>
+    <header class="topbar" style="--i:0"><div><p class="eyebrow">${u.cloud ? "Cuenta sincronizada" : "Cuenta local"}</p><h1 class="display h1">${esc(u.name)}</h1></div><span class="avatar" style="width:52px;height:52px">${esc(u.name[0].toUpperCase())}</span></header>
     <div class="card" style="--i:1"><div class="row"><span style="font-size:34px">👶</span><div class="grow"><b>${esc(u.baby.name)}</b><p class="small muted">Nació el ${new Date(u.baby.birth + 'T12:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</p></div><button class="btn ghost sm" data-act="edit-baby">Editar</button></div>
-      <p class="small muted" style="margin-top:10px">${u.entries.length} comidas registradas desde el ${first}.</p></div>
+      <p class="small muted" style="margin-top:10px">${u.entries.length} ${u.entries.length === 1 ? 'comida registrada' : 'comidas registradas'} desde el ${first}.</p></div>
+    ${u.cloud?.hid ? `<div class="card sage" style="--i:2;margin-top:12px"><b>👨‍👩‍👦 Hogar compartido</b>
+      <p class="small muted" style="margin:4px 0 10px">Quien tenga este código y una cuenta puede ver y anotar comidas de ${esc(u.baby.name)}.</p>
+      <div class="row between" style="background:var(--surface);padding:12px 14px;border-radius:var(--r-md)"><b style="font-size:22px;letter-spacing:.14em;font-family:ui-monospace,monospace">${esc(u.cloud.code || '')}</b><button class="btn ghost sm" data-act="share-code">Compartir</button></div>
+      ${(u.cloud.members || []).length ? `<p class="small muted" style="margin-top:10px">En el hogar: ${u.cloud.members.map(esc).join(', ')}</p>` : ''}
+      <p class="small muted" style="margin-top:8px">${navigator.onLine ? '☁️ Sincronizado' : '📴 Sin internet: se sube cuando vuelva'}</p></div>`
+      : `<div class="card soft" style="--i:2;margin-top:12px"><b>☁️ Compartir entre celulares</b><p class="small muted" style="margin:4px 0 10px">Creá una cuenta con email y contraseña para usar los mismos datos en dos celulares.</p><button class="btn primary sm" data-act="link-cloud">Crear cuenta y sincronizar</button></div>`}
     <section class="section" style="--i:2"><h2 class="h2" style="margin-bottom:10px">Tu pediatra</h2><div class="list"><button data-act="edit-plan"><span>👩‍⚕️</span><span class="grow"><b>Indicaciones del pediatra</b><br><span class="small muted">${activePlan(u) ? 'Plan activo · tocá para editar' : 'Cargá qué alimentos te permitió y hasta cuándo'}</span></span></button></div></section>
     <section class="section" style="--i:2"><h2 class="h2" style="margin-bottom:10px">Tus datos</h2><div class="list">
       <button data-act="export-summary"><span>📋</span><span class="grow"><b>Resumen para el pediatra</b><br><span class="small muted">Compartir o copiar texto</span></span></button>
@@ -203,9 +226,9 @@ function profileView(u) {
       <button data-act="import-json"><span>📥</span><span class="grow"><b>Restaurar o combinar copia</b><br><span class="small muted">Cargar un archivo guardado</span></span></button></div>
       <input type="file" id="file-in" accept="application/json,.json" hidden></section>
     <section class="section" style="--i:3"><div class="list">
-      <button data-act="signout"><span>🔄</span><span class="grow"><b>Cambiar de usuario</b></span></button>
+      <button data-act="signout"><span>🔄</span><span class="grow"><b>${u.cloud ? 'Cerrar sesión' : 'Cambiar de usuario'}</b></span></button>
       <button data-act="delete-profile" style="color:var(--danger)"><span>🗑️</span><span class="grow"><b>Borrar mis datos</b></span></button></div></section>
-    <p class="disclaimer" style="margin-top:24px">Todo se guarda solo en este celular. Si borrás los datos del navegador, se pierden: hacé copias de seguridad.</p></div>`;
+    <p class="disclaimer" style="margin-top:24px">${u.cloud?.hid ? 'Tus datos están en tu celular y en la nube. Igual conviene hacer copias de seguridad.' : 'Todo se guarda solo en este celular. Si borrás los datos del navegador, se pierden: hacé copias de seguridad.'}</p></div>`;
 }
 
 // ---------- Hojas (bottom sheets) ----------
@@ -329,7 +352,7 @@ function saveEntry() {
   const before = Object.keys(foodStats(store.me().entries, foodsById)).length;
   store.addEntry(entry);
   const after = Object.keys(foodStats(store.me().entries, foodsById)).length;
-  closeSheet(); render(); celebrate();
+  closeSheet(); render(); celebrate(); syncSoon();
   toast(after > before ? `¡${after - before === 1 ? 'Alimento nuevo' : after - before + ' alimentos nuevos'}! 🎉` : 'Comida guardada');
 }
 
@@ -396,14 +419,23 @@ document.addEventListener('click', async (ev) => {
     case 'log-food': closeSheet(true); return openLogger(id);
     case 'close-sheet': return closeSheet();
     case 'signin': store.signIn(name); ui.tab = 'hoy'; return render();
-    case 'signout': store.signOut(); return render();
+    case 'signout': if (u?.cloud) await cloud.signOut(); store.signOut(); return render();
+    case 'auth-mode': ui.auth = id; return render();
+    case 'local-mode': ui.local = !ui.local; return render();
+    case 'link-cloud': return openLinkCloud();
+    case 'link-mode': el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#link-form').innerHTML = authForm(id, 'data-link="1"'); return;
+    case 'share-code': {
+      const text = `Entrá a Primeras Cucharadas con tu cuenta y unite a nuestro hogar con este código: ${u.cloud.code}`;
+      if (navigator.share) { try { await navigator.share({ text }); } catch { /* cancelado */ } return; }
+      try { await navigator.clipboard.writeText(u.cloud.code); toast('Código copiado'); } catch { toast(u.cloud.code); } return;
+    }
     case 'tipcat': ui.tipCat = id; ui.tipLimit = 8; return render();
     case 'more-tips': ui.tipLimit += 10; return render();
     case 'allergen': return openAllergen(id);
     case 'edit-baby': return openBabyEditor();
     case 'edit-plan': return openPlanEditor();
     case 'plan-group': return el.setAttribute('aria-pressed', el.getAttribute('aria-pressed') !== 'true');
-    case 'clear-plan': store.setPlan(null); closeSheet(); render(); return toast('Plan quitado');
+    case 'clear-plan': { store.setPlan(null); closeSheet(); render(); toast('Plan quitado'); const c = u.cloud; if (c?.hid) cloud.updateHousehold(c.hid, { plan: null }).catch(() => {}); return; }
     case 'meal': draft.meal = id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#meal-label').textContent = MEAL_NAMES[id]; return;
     case 'texture': { const on = draft.texture === id; draft.texture = on ? '' : id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', !on && b === el)); return; }
     case 'reaction': draft.reaction = id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#react-help').hidden = id === 'none'; return;
@@ -414,7 +446,7 @@ document.addEventListener('click', async (ev) => {
     case 'unit': item.unit = id; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b === el)); return;
     case 'like': item.like = item.like === +v ? 0 : +v; el.parentElement.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', +b.dataset.v === item.like)); return;
     case 'save-entry': return saveEntry();
-    case 'del-entry': if (confirm('¿Borrar esta comida?')) { store.removeEntry(id); render(); toast('Comida borrada'); } return;
+    case 'del-entry': if (confirm('¿Borrar esta comida?')) { store.removeEntry(id); render(); toast('Comida borrada'); syncSoon(); } return;
     case 'export-summary': {
       const text = summaryText(u);
       if (navigator.share) { try { await navigator.share({ title: 'Resumen de alimentación', text }); return; } catch { return; } }
@@ -426,7 +458,7 @@ document.addEventListener('click', async (ev) => {
     case 'qr-show': return showQr();
     case 'qr-scan': return scanQr();
     case 'import-json': return $('#file-in').click();
-    case 'delete-profile': if (confirm('Se borran todos los datos de este perfil en este celular. ¿Seguro?')) { store.deleteProfile(); render(); } return;
+    case 'delete-profile': if (confirm(u.cloud ? 'Se borran los datos de este celular. Los de la nube siguen disponibles al volver a entrar. ¿Seguro?' : 'Se borran todos los datos de este perfil en este celular. ¿Seguro?')) { if (u.cloud) await cloud.signOut(); store.deleteProfile(); render(); } return;
   }
 });
 
@@ -442,10 +474,29 @@ document.addEventListener('submit', (ev) => {
   ev.preventDefault();
   const fd = new FormData(form);
   switch (form.dataset.form) {
+    case 'auth-in': case 'auth-up': {
+      const up = form.dataset.form === 'auth-up', link = form.dataset.link;
+      return withBusy(form, async () => {
+        const args = { email: fd.get('email'), password: fd.get('password'), name: fd.get('name') };
+        const user = up ? await cloud.signUp(args) : await cloud.signIn(args);
+        return link ? linkLocal(user, args.name) : afterAuth(user, args.name);
+      });
+    }
+    case 'join': return withBusy(form, async () => {
+      const u = store.me(); const h = await cloud.joinHousehold(fd.get('code'), u.name);
+      const info = await cloud.myHousehold();
+      store.setCloud({ ...u.cloud, hid: h.id, code: h.invite_code, members: info.members.map((m) => m.display_name) }); store.adoptHousehold(h);
+      render(); toast('¡Ya estás en el hogar!'); startCloud();
+    });
     case 'signin': store.signIn(fd.get('name')); ui.tab = 'hoy'; return render();
-    case 'baby': store.setBaby({ name: fd.get('baby').trim(), birth: fd.get('birth') }); return render();
-    case 'plan': store.setPlan({ groups: [...form.querySelectorAll('[data-act=plan-group][aria-pressed=true]')].map((b) => b.dataset.id), until: fd.get('until') || '', note: (fd.get('note') || '').trim() }); closeSheet(); render(); return toast('Plan guardado');
-    case 'baby-edit': store.setBaby({ name: fd.get('baby').trim(), birth: fd.get('birth') }); closeSheet(); render(); return toast('Guardado');
+    case 'baby': {
+      const baby = { name: fd.get('baby').trim(), birth: fd.get('birth') }, u = store.me();
+      store.setBaby(baby);
+      if (u.cloud && !u.cloud.hid) return withBusy(form, async () => { const h = await cloud.createHousehold(u.name, baby, null); store.patchCloud({ hid: h.id, code: h.invite_code, members: [u.name] }); render(); startCloud(); });
+      return render();
+    }
+    case 'plan': store.setPlan({ groups: [...form.querySelectorAll('[data-act=plan-group][aria-pressed=true]')].map((b) => b.dataset.id), until: fd.get('until') || '', note: (fd.get('note') || '').trim() }); closeSheet(); render(); toast('Plan guardado'); { const c = store.me().cloud; if (c?.hid) cloud.updateHousehold(c.hid, { plan: store.me().plan }).catch(() => {}); } return;
+    case 'baby-edit': { const baby = { name: fd.get('baby').trim(), birth: fd.get('birth') }; store.setBaby(baby); closeSheet(); render(); toast('Guardado'); const c = store.me().cloud; if (c?.hid) cloud.updateHousehold(c.hid, { baby }).catch(() => {}); return; }
   }
 });
 
@@ -533,6 +584,72 @@ async function scanQr() {
     }, 150);
   } catch { const i = $('#scan-info'); if (i) i.textContent = 'No pude usar la cámara. Revisá el permiso en el navegador.'; }
 }
+
+// ---------- Nube: sesión, hogar y sincronización ----------
+let syncing = false;
+const idle = () => !$('#sheet-root').firstChild;
+const refreshIfIdle = () => { if (idle() && store.me()?.baby) render(); };
+
+async function sync(quiet = true) {
+  const u = store.me(); const c = u?.cloud;
+  if (!c?.hid || syncing || !navigator.onLine) return;
+  syncing = true;
+  try {
+    const now = Date.now();
+    const pending = u.entries.filter((e) => (e.u || e.ts) > (c.lastPush || 0));
+    const tombs = u.tomb || [];
+    if (pending.length || tombs.length) { await cloud.push(c.hid, pending, tombs); u.tomb = []; store.patchCloud({ lastPush: now }); }
+    const rows = await cloud.pull(c.hid, c.lastPull);
+    if (rows.length) { const changed = store.applyRemote(rows); store.patchCloud({ lastPull: rows[rows.length - 1].updated_at }); if (changed) refreshIfIdle(); }
+  } catch (e) { if (!quiet) toast(e.message); }
+  syncing = false;
+}
+async function refreshHousehold() {
+  const u = store.me(); if (!u?.cloud) return;
+  try {
+    const info = await cloud.myHousehold(); if (!info) return;
+    store.adoptHousehold(info.household);
+    store.patchCloud({ hid: info.household.id, code: info.household.invite_code, members: info.members.map((m) => m.display_name) });
+  } catch { /* sin conexión */ }
+}
+async function startCloud() {
+  const u = store.me(); if (!u?.cloud?.hid) return;
+  await refreshHousehold(); await sync();
+  cloud.subscribe(u.cloud.hid, (p) => (p.table === 'households' ? refreshHousehold().then(refreshIfIdle) : sync())).catch(() => {});
+  refreshIfIdle();
+}
+const syncSoon = () => setTimeout(() => sync(), 50);
+
+async function afterAuth(user, typedName) {
+  const info = await cloud.myHousehold();
+  const name = info?.displayName || typedName || user.user_metadata?.name || user.email.split('@')[0];
+  store.signInCloud(user.id, name);
+  if (info) { store.setCloud({ uid: user.id, hid: info.household.id, code: info.household.invite_code, members: info.members.map((m) => m.display_name) }); store.adoptHousehold(info.household); }
+  else store.setCloud({ uid: user.id, hid: null });
+  ui.tab = 'hoy'; render(); startCloud();
+}
+// Perfil local que se liga a una cuenta nueva o existente
+async function linkLocal(user, typedName) {
+  const u = store.me(); const info = await cloud.myHousehold();
+  if (info) { store.setCloud({ uid: user.id, hid: info.household.id, code: info.household.invite_code, members: info.members.map((m) => m.display_name) }); store.adoptHousehold(info.household); }
+  else { const h = await cloud.createHousehold(u.name, u.baby, u.plan); store.setCloud({ uid: user.id, hid: h.id, code: h.invite_code, members: [u.name] }); }
+  closeSheet(); render(); toast('Sincronización activada'); startCloud();
+}
+function openLinkCloud() {
+  openSheet({ title: 'Crear cuenta', body: `<div class="col" style="gap:14px"><p class="muted small">Tus comidas actuales se suben a la nube y quedan disponibles en los celulares donde entres con esta cuenta.</p>
+    <div class="seg"><button data-act="link-mode" data-id="up" aria-pressed="true">Crear cuenta</button><button data-act="link-mode" data-id="in" aria-pressed="false">Ya tengo cuenta</button></div>
+    <div id="link-form">${authForm('up', 'data-link="1"')}</div></div>` });
+}
+
+async function withBusy(form, fn) {
+  const btn = form.querySelector('button[type=submit]'), err = form.querySelector('[data-error]'), label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Un momento…'; if (err) err.textContent = '';
+  try { await fn(); } catch (e) { if (err) err.textContent = e.message; else toast(e.message); }
+  btn.disabled = false; btn.textContent = label;
+}
+
+window.addEventListener('online', () => sync());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sync(); });
 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
 
